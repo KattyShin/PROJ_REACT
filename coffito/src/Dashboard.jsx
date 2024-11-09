@@ -1,7 +1,5 @@
 import { BiExport } from "react-icons/bi";
 
-
-
 function Dashboard() {
   return (
     <div class="main">
@@ -10,8 +8,8 @@ function Dashboard() {
         <label htmlFor="">Sunday, 02 November 2024 at 9:46 AM</label>
       </div>
 
-      <div class="details">
-        <div>
+      <div className=" flex h-full bg-primary-bg">
+        <div className="h-full w-full ">
           <div class="col-1">
             <div class="card-con-sales">
               <div class="card-con-sales-div">
@@ -47,14 +45,15 @@ function Dashboard() {
 
               {/*TABLE---------------------------------------------------------------------- */}
               <div class="con-table daily-table p-2 rounded-lg bg-primary-bg w-full overflow-hidden h-full">
-                <div class="table-con bg-card-bg border border-border-color"></div>
+                <div class="table-con bg-card-bg border border-border-color h-full"></div>
                 {/* --ARI TABLE  */}
               </div>
             </div>
           </div>
-
+        </div>
+        <div className="h-full w-[40%]">
           {/* -------------------------------------------------------------------- */}
-          <div class="col-2">
+          <div class="col-2 pr-8">
             <div class="best-selling-main-con">
               <div class="cardHeader">
                 <h2>Best Selling</h2>
