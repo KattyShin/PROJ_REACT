@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+  h5{
+    @apply text-[1.4rem] font-semibold
+  }
+
+  h2{
+    @apply text-[1.2rem] font-medium 
+  }
+  .nav-con {
+    @apply z-10 fixed flex-col justify-between w-[230px] h-screen bg-sidebar-bg overflow-hidden text-text-muted border border-border-color;
+  }
+  .nav-con ul nav-li-hover li{
+    @apply mb-[-4px]
+  }
+  .nav-li-hover {
+    @apply pl-5 hover:bg-border-color  hover:rounded-l-[10px] hover:text-black;
+  }
+
+  .nav-a {
+    @apply flex items-center gap-3 h-[50px];
+  }
+
+  .icon {
+    @apply text-[1.6rem];
+  }
+
+  .logo {
+    @apply   h-full 
+  }
+
+  
+  .logo img {
+    @apply   h-[50px]  w-[50px]
+  }
+  
+
+  /* In your CSS file */
+  .main {
+    @apply relative top-0 left-[230px] w-[calc(100vw-230px)]  h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col ;
+  }
+
+  .topbar-con {
+    @apply bg-card-bg w-full h-12 flex justify-between items-center px-5;
+  }
+
+  .details {
+    @apply flex w-full h-full px-5 ml-[-3px] pb-4;
+  }
+  .details div {
+    @apply flex w-full;
+  }
+
+  .col-1 {
+    @apply flex flex-col py-3 pb-0;
+  }
+
+  .card-con-sales {
+    @apply flex  gap-3  mb-3;
+  }
+
+  .card-con-sales .card-con-sales-div {
+    @apply w-[250px] h-[120px] bg-card-bg rounded-[10px] border border-border-color flex flex-col p-3;
+  }
+
+  .dashboard-text-con {
+    @apply flex flex-row border-none w-full h-full items-center;
+  }
+
+  .table-con {
+    @apply bg-gray-200 rounded-[5px];
+  }
+
+  .col-2 {
+    @apply w-full p-3;
+  }
+
+  .cardHeader {
+    @apply mb-2;
+  }
+
+  .best-selling-main-con {
+    @apply p-3  flex flex-col bg-card-bg rounded-[5px];
+  }
+  .best-selling {
+    @apply h-full w-full flex flex-col gap-3;
+  }
+
+  .best-selling .card-con {
+    @apply flex items-center  bg-primary-bg  text-black rounded-[10px] border border-border-color gap-2;
+  }
+
+  .best-selling .prod-con {
+    @apply h-11 w-11 bg-[#FF8C18] rounded-[10px];
+  }
+
+  .search label {
+    @apply flex  items-center bg-card-bg border border-border-color rounded-[10px] p-2 w-[300px] h-[30px];
+  }
+  .search input {
+    @apply bg-transparent border-none outline-none text-black;
+  }
+
+
+
+  .button {
+    @apply flex  gap-1 justify-center items-center bg-accent w-[150px] h-[30px] text-white text-[12px] pl-2 pr-2 rounded-[5px] ml-5;
+  }
+
+  
+  .exportButton {
+    @apply flex  gap-1 justify-center items-center bg-accent w-[100px] h-[30px] text-white text-[12px] pl-2 pr-2 rounded-[5px] ml-5;
+  }
+
+  /* customStyles.css */
+  .dropdown-item {
+    @apply px-3 py-2 cursor-pointer transition ease-in-out duration-300  mt-[-8px];
+  }
+
+  .dropdown-item:hover {
+    @apply text-gray-800 rounded-md hover:bg-border-color ;
+  }
+
+
+  /* styles.css */
+  .modal-main-con {
+    @apply w-full z-50 fixed inset-0 flex justify-center bg-black bg-opacity-50;
+  }
+
+  .modal-con {
+    @apply bg-white p-6 h-[160px] mt-5 rounded-lg shadow-lg w-[300px] text-center transform;
+  }
+
+  .SucSaveIcon {
+    @apply w-full flex justify-center mt-3 text-3xl text-accent;
+  }
+
+
+
+}
