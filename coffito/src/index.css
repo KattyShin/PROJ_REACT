@@ -56,7 +56,7 @@
 
   /* In your CSS file */
   .main {
-    @apply absolute left-[230px] w-[calc(100vw-230px)]  h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col ;
+    @apply fixed left-[230px] w-[calc(100vw-230px)]  h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col z-50;
   }
 
   .topbar-con {
@@ -79,7 +79,7 @@
   }
 
   .card-con-sales .card-con-sales-div {
-    @apply w-full h-[120px] bg-card-bg rounded-[10px] border border-border-color flex flex-col p-5;
+    @apply w-full  h-auto bg-card-bg rounded-[10px] border border-border-color flex flex-col p-5;
   }
 
   .dashboard-text-con {
@@ -241,7 +241,7 @@
 }
 
 .con-table thead th {
-  @apply font-bold sticky top-0 z-10;
+  @apply font-bold sticky top-0 ;
 }
 
 /* =============SCROLL BAR DESIGN ================ */

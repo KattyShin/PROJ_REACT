@@ -1,23 +1,14 @@
 import { IoSearch } from "react-icons/io5";
 import { BiExport } from "react-icons/bi";
+import Topbar from "./TopbarSalesReport.jsx";
+import GrandTotal from "./GrandTotal";
 
 function SalesReportYearly() {
   return (
     <div class="main">
-      <div className="topbar-con">
-        <h2>Sales Report</h2>
-        <label htmlFor="">Sunday, 02 November 2024 at 9:46 AM</label>
-      </div>
-
-      <div className="grand-con">
-        <label>
-          Grand Total Sales : <span>400</span>
-        </label>
-        <br></br>
-        <label>
-          Grand Total Sales : <span>400</span>
-        </label>
-      </div>
+          <Topbar />
+     <GrandTotal />
+     
 
       <div class="details mb-3">
         <div>
@@ -45,56 +36,40 @@ function SalesReportYearly() {
                 {/* --Table Ari */}
 
                 <table>
-                  <thead>
-                    <tr>
-                      <th>Product ID</th>
-                      <th>Product Name</th>
-                      <th>Price</th>
-                      <th>Category</th>
-                    </tr>
-                  </thead>
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Total Sales</th>
+                      </tr>
+                    </thead>
 
-                  <tbody>
-                    <tr>
-                      <td>1001</td>
-                      <td>Matcha</td>
-                      <td>40.00</td>
-                      <td>Non-Coffee</td>
-                    </tr>
-
-                    <tr>
-                      <td>1001</td>
-                      <td>Matcha</td>
-                      <td>40.00</td>
-                      <td>Non-Coffee</td>
-                    </tr>
-                    <tr>
-                      <td>1001</td>
-                      <td>Matcha</td>
-                      <td>40.00</td>
-                      <td>Non-Coffee</td>
-                    </tr>
-                    <tr>
-                      <td>1001</td>
-                      <td>Matcha</td>
-                      <td>40.00</td>
-                      <td>Non-Coffee</td>
-                    </tr>
-                    <tr>
-                      <td>1001</td>
-                      <td>Matcha</td>
-                      <td>40.00</td>
-                      <td>Non-Coffee</td>
-                    </tr>
-
-                    <tr>
-                      <td>1001</td>
-                      <td>Matcha</td>
-                      <td>40.00</td>
-                      <td>Non-Coffee</td>
-                    </tr>
-                  </tbody>
-                </table>
+                    <tbody>
+                      <tr>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                      <tr>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                      <tr>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                      <tr>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                      <tr>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                      <tr>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                    </tbody>
+                  </table>
               </div>
             </div>
           </div>

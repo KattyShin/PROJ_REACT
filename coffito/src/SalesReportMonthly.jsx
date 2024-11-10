@@ -1,24 +1,24 @@
 import { IoSearch } from "react-icons/io5";
 import { BiExport } from "react-icons/bi";
+import Exported from "./Modal/ExportedModal";
+import Topbar from "./TopbarSalesReport.jsx";
+import GrandTotal from "./GrandTotal";
+import { useState } from "react";
 
 function SalesReportMonthly() {
+  const [isExportModalVisible, setExportModal] = useState(false);
+  const showExportModal = () => setExportModal(true);
+  const closeExport = () => setExportModal(false);
+
+  const handleConfirm = () => {
+    showExportModal(); // Close the success modal
+    closeExport(); // Close the confirm modal
+  };
+
   return (
     <div class="main">
-      <div className="topbar-con">
-        <h2>Sales Report</h2>
-        <label htmlFor="">Sunday, 02 November 2024 at 9:46 AM</label>
-      </div>
-    
-
-      <div className="grand-con">
-        <label>
-          Grand Total Sales : <span>400</span>
-        </label>
-        <br></br>
-        <label>
-          Grand Total Sales : <span>400</span>
-        </label>
-      </div>
+      <Topbar />
+      <GrandTotal />
 
       <div class="details mb-3">
         <div>
@@ -33,74 +33,58 @@ function SalesReportMonthly() {
                 </label>
               </div>
 
-              <button class="button">
+              <button class="button" onClick={showExportModal}>
                 Export <BiExport />
               </button>
             </div>
 
             <div class="h-0.5 bg-gray-200 w-full mb-2 rounded-full"></div>
 
-              {/* Table Section */}
-              <div className="con-table daily-table p-1 rounded-lg bg-border-color w-full overflow-hidden h-full">
-                <div className="table-wrapper-prod table-con bg-card-bg border border-border-color">
-                  {/* --Table Ari */}
+            {/* Table Section */}
+            <div className="con-table daily-table p-1 rounded-lg bg-border-color w-full overflow-hidden h-full">
+              <div className="table-wrapper-prod table-con bg-card-bg border border-border-color">
+                {/* --Table Ari */}
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Total Sales</th>
+                    </tr>
+                  </thead>
 
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Product ID</th>
-                        <th>Product Name</th>
-                        <th>Price</th>
-                        <th>Category</th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
-                        <td>40.00</td>
-                        <td>Non-Coffee</td>
-                      </tr>
-
-                      <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
-                        <td>40.00</td>
-                        <td>Non-Coffee</td>
-                      </tr>
-                      <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
-                        <td>40.00</td>
-                        <td>Non-Coffee</td>
-                      </tr>
-                      <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
-                        <td>40.00</td>
-                        <td>Non-Coffee</td>
-                      </tr>
-                      <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
-                        <td>40.00</td>
-                        <td>Non-Coffee</td>
-                      </tr>
-
-                      <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
-                        <td>40.00</td>
-                        <td>Non-Coffee</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                  <tbody>
+                    <tr>
+                      <td>40.00</td>
+                      <td>Non-Coffee</td>
+                    </tr>
+                    <tr>
+                      <td>40.00</td>
+                      <td>Non-Coffee</td>
+                    </tr>
+                    <tr>
+                      <td>40.00</td>
+                      <td>Non-Coffee</td>
+                    </tr>
+                    <tr>
+                      <td>40.00</td>
+                      <td>Non-Coffee</td>
+                    </tr>
+                    <tr>
+                      <td>40.00</td>
+                      <td>Non-Coffee</td>
+                    </tr>
+                    <tr>
+                      <td>40.00</td>
+                      <td>Non-Coffee</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
+            </div>
           </div>
         </div>
       </div>
+      {isExportModalVisible && <Exported Exported={handleConfirm} />}
     </div>
   );
 }

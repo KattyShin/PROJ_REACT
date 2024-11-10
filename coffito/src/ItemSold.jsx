@@ -1,23 +1,14 @@
 import { IoSearch } from "react-icons/io5";
 import { BiExport } from "react-icons/bi";
-
+import GrandTotal from "./GrandTotal";
+import Topbar
+ from "./TopbarSalesReport.jsx";
 function ItemSold() {
   return (
     <div class="main">
-      <div className="topbar-con">
-        <h2>Sales Report</h2>
-        <label htmlFor="">Sunday, 02 November 2024 at 9:46 AM</label>
-      </div>
-
-      <div className="grand-con">
-        <label>
-          Grand Total Sales : <span>400</span>
-        </label>
-        <br></br>
-        <label>
-          Grand Total Sales : <span>400</span>
-        </label>
-      </div>
+       <Topbar />
+     <GrandTotal />
+     
 
       <div class="details mb-3">
         <div>

@@ -1,23 +1,25 @@
 import { IoSearch } from "react-icons/io5";
 import { BiExport } from "react-icons/bi";
+import Exported from "./Modal/ExportedModal";
+import { useState } from "react";
+import GrandTotal from "./GrandTotal";
+import Topbar from "./TopbarSalesReport";
 
 function SalesReportDaily() {
+  const [isExportModalVisible, setExportModal] = useState(false);
+  const showExportModal = () => setExportModal(true);
+  const closeExport = () => setExportModal(false);
+
+  const handleConfirm = () => {
+    showExportModal(); // Close the success modal
+    closeExport(); // Close the confirm modal
+  };
+
   return (
     <div class="main">
-      <div className="topbar-con">
-        <h2>Sales Report</h2>
-        <label htmlFor="">Sunday, 02 November 2024 at 9:46 AM</label>
-      </div>
+      <Topbar />
+      <GrandTotal />
 
-      <div className="grand-con">
-        <label>
-          Grand Total Sales : <span>400</span>
-        </label>
-        <br></br>
-        <label>
-          Grand Total Sales : <span>400</span>
-        </label>
-      </div>
       <div class="details mb-3">
         <div>
           <div class="flex flex-col justify-between mt-2 mb-3 h-full bg-card-bg p-2 border border-border-color">
@@ -31,7 +33,7 @@ function SalesReportDaily() {
                 </label>
               </div>
 
-              <button class="button">
+              <button class="button" onClick={showExportModal}>
                 Export <BiExport />
               </button>
             </div>
@@ -42,53 +44,36 @@ function SalesReportDaily() {
             <div className="con-table daily-table p-1 rounded-lg bg-border-color w-full overflow-hidden h-full">
               <div className="table-wrapper-prod table-con bg-card-bg border border-border-color">
                 {/* --Table Ari */}
-
                 <table>
                   <thead>
                     <tr>
-                      <th>Product ID</th>
-                      <th>Product Name</th>
-                      <th>Price</th>
-                      <th>Category</th>
+                      <th>Date</th>
+                      <th>Total Sales</th>
                     </tr>
                   </thead>
 
                   <tbody>
                     <tr>
-                      <td>1001</td>
-                      <td>Matcha</td>
-                      <td>40.00</td>
-                      <td>Non-Coffee</td>
-                    </tr>
-
-                    <tr>
-                      <td>1001</td>
-                      <td>Matcha</td>
                       <td>40.00</td>
                       <td>Non-Coffee</td>
                     </tr>
                     <tr>
-                      <td>1001</td>
-                      <td>Matcha</td>
                       <td>40.00</td>
                       <td>Non-Coffee</td>
                     </tr>
                     <tr>
-                      <td>1001</td>
-                      <td>Matcha</td>
                       <td>40.00</td>
                       <td>Non-Coffee</td>
                     </tr>
                     <tr>
-                      <td>1001</td>
-                      <td>Matcha</td>
                       <td>40.00</td>
                       <td>Non-Coffee</td>
                     </tr>
-
                     <tr>
-                      <td>1001</td>
-                      <td>Matcha</td>
+                      <td>40.00</td>
+                      <td>Non-Coffee</td>
+                    </tr>
+                    <tr>
                       <td>40.00</td>
                       <td>Non-Coffee</td>
                     </tr>
@@ -99,6 +84,7 @@ function SalesReportDaily() {
           </div>
         </div>
       </div>
+      {isExportModalVisible && <Exported Exported={handleConfirm} />}
     </div>
   );
 }

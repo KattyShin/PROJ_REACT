@@ -2,13 +2,27 @@ import { BiExport } from "react-icons/bi";
 import cup_icon_1 from "./assets/coffee-cup.png";
 import cup_icon_2 from "./assets/coffee-sold.png";
 import sales from "./assets/sales.png";
+import Exported from "./Modal/ExportedModal";
+import DateTime from "./DateTime";
+import { useState } from "react";
 
 function Dashboard() {
+  const [isExportModalVisible, setExportModal] = useState(false);
+  const showExportModal = () => setExportModal(true);
+  const closeExport = () => setExportModal(false);
+
+  const handleConfirm = () => {
+    showExportModal(); // Close the success modal
+    closeExport(); // Close the confirm modal
+  };
+  
+
+
   return (
     <div class="main">
       <div class="topbar-con">
         <h2>Dashboard</h2>
-        <label htmlFor="">Sunday, 02 November 2024 at 9:46 AM</label>
+        <DateTime/>
       </div>
 
       <div className=" flex h-full bg-primary-bg ">
@@ -40,8 +54,8 @@ function Dashboard() {
             <div class="flex flex-col justify-between mt-2 mb-3 h-full bg-card-bg p-2 border border-border-color">
               {/* SALES_EXPORT-------------------------------------------------------------- */}
               <div class="flex  justify-between mt-2 mb-3">
-                <h2>Sales</h2>
-                <button className="exportButton">
+                <h2>Daily Sales</h2>
+                <button className="exportButton" onClick={showExportModal}>
                   Export <BiExport />
                 </button>
               </div>
@@ -56,74 +70,33 @@ function Dashboard() {
                   <table>
                     <thead>
                       <tr>
-                        <th>Product ID</th>
-                        <th>Product Name</th>
-                        <th>Price</th>
-                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Total Sales</th>
                       </tr>
                     </thead>
 
                     <tbody>
                       <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
-                        <td>40.00</td>
-                        <td>Non-Coffee</td>
-                      </tr>
-
-                      <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
                         <td>40.00</td>
                         <td>Non-Coffee</td>
                       </tr>
                       <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
-                        <td>40.00</td>
-                        <td>Non-Coffee</td>
-                      </tr>
-
-                      <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
                         <td>40.00</td>
                         <td>Non-Coffee</td>
                       </tr>
                       <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
                         <td>40.00</td>
                         <td>Non-Coffee</td>
                       </tr>
                       <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
                         <td>40.00</td>
                         <td>Non-Coffee</td>
                       </tr>
                       <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
                         <td>40.00</td>
                         <td>Non-Coffee</td>
                       </tr>
                       <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
-                        <td>40.00</td>
-                        <td>Non-Coffee</td>
-                      </tr>
-                      <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
-                        <td>40.00</td>
-                        <td>Non-Coffee</td>
-                      </tr>
-
-                      <tr>
-                        <td>1001</td>
-                        <td>Matcha</td>
                         <td>40.00</td>
                         <td>Non-Coffee</td>
                       </tr>
@@ -131,8 +104,6 @@ function Dashboard() {
                   </table>
                 </div>
               </div>
-
-              
             </div>
           </div>
         </div>
@@ -203,6 +174,7 @@ function Dashboard() {
               </div>
             </div>
           </div>
+          {isExportModalVisible && <Exported Exported={handleConfirm} />}
         </div>
       </div>
     </div>

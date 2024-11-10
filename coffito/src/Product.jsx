@@ -9,6 +9,7 @@ import ConfirmModal from "./Modal/ConfirmModal";
 import Successfully from "./Modal/Successfully";
 import UpdateProductModal from "./Modal/UpdateProdModal";
 import AddProductModal from "./Modal/AddProductModal";
+import DateTime from "./DateTime";
 
 function Product() {
   // DELETE
@@ -37,6 +38,7 @@ function Product() {
     closeModalConfirmModal(); // Close the confirm modal
   };
 
+
   // State for search term
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -62,7 +64,7 @@ function Product() {
     <div className="main">
       <div className="topbar-con">
         <h2>Product</h2>
-        <label>Sunday, 02 November 2024 at 9:46 AM</label>
+       <DateTime/>
       </div>
 
       <div className="details">
