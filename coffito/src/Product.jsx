@@ -8,6 +8,7 @@ import { MdDelete } from "react-icons/md";
 import { MdModeEdit } from "react-icons/md";
 import Successfully from "./Modal/Successfully";
 import ConfirmModal from "./Modal/ConfirmModal";
+import UpdateProductModal from "./Modal/UpdateProdModal";
 
 function Product() {
   const [products, setProducts] = useState([]);
@@ -24,6 +25,13 @@ function Product() {
   };
 
   const closeModalConfirmModal = () => setConfirmModalVisible(false);
+
+  // UPDATE
+
+  // UPDATE
+  const [isUpdateProd, setIsModalVisible] = useState(false);
+  const openModal = () => setIsModalVisible(true);
+  const closeModal = () => setIsModalVisible(false);
 
   // Function to delete a product
   const deleteProduct = async () => {
@@ -70,7 +78,7 @@ function Product() {
       console.error("Error fetching products:", err);
     }
   };
-  
+
   const openAddProdModal = () => setIsAddProdModalVisible(true);
   const closeAddProdModal = () => setIsAddProdModalVisible(false);
 
@@ -123,7 +131,7 @@ function Product() {
                             <button onClick={() => showConfirmModal(product)}>
                               <MdDelete className="del" />
                             </button>
-                            <button>
+                            <button onClick={openModal}>
                               <MdModeEdit className="update" />
                             </button>
                           </div>
@@ -151,6 +159,16 @@ function Product() {
         />
       )}
 
+      {/* UPDATE */}
+
+      {/* UPDATE */}
+      {/* Show the AddProductModal if isModalVisible is true */}
+      {isUpdateProd && (
+        <UpdateProductModal
+          closeModal={closeModal}
+          showSuccessfullySaveModal={showSuccessfullySaveModal}
+        />
+      )}
       {/* Add Product Modal */}
       {isAddProdModalVisible && (
         <AddProductModal
