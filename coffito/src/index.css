@@ -4,6 +4,10 @@
 
 @layer components {
 
+  body{
+    font-family: Poppins;
+  }
+
   h5{
     @apply text-[1.4rem] font-semibold
   }
