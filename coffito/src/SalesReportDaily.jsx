@@ -1,9 +1,11 @@
 import { IoSearch } from "react-icons/io5";
 import { BiExport } from "react-icons/bi";
 import Exported from "./Modal/ExportedModal";
-import { useState } from "react";
 import GrandTotal from "./GrandTotal";
 import Topbar from "./TopbarSalesReport";
+
+import { useState } from "react";
+
 
 function SalesReportDaily() {
   const [isExportModalVisible, setExportModal] = useState(false);
@@ -11,7 +13,6 @@ function SalesReportDaily() {
   const closeExport = () => setExportModal(false);
 
   const handleConfirm = () => {
-    showExportModal(); // Close the success modal
     closeExport(); // Close the confirm modal
   };
 
@@ -33,7 +34,7 @@ function SalesReportDaily() {
                 </label>
               </div>
 
-              <button class="button" onClick={showExportModal}>
+              <button className="button" onClick={showExportModal}>
                 Export <BiExport />
               </button>
             </div>

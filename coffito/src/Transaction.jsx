@@ -2,7 +2,21 @@ import { IoSearch } from "react-icons/io5";
 import { BiExport } from "react-icons/bi";
 import GrandTotal from "./GrandTotal";
 import Topbar from "./TopbarSalesReport.jsx";
+import Exported from "./Modal/ExportedModal.jsx";
+
+import { useState } from "react";
+
+
 function Transaction() {
+
+  const [isExportModalVisible, setExportModal] = useState(false);
+  const showExportModal = () => setExportModal(true);
+  const closeExport = () => setExportModal(false);
+
+  const handleConfirm = () => {
+    closeExport(); // Close the confirm modal
+  };
+
   return (
     <div class="main">
       <Topbar />
@@ -21,12 +35,12 @@ function Transaction() {
                 </label>
               </div>
 
-              <button class="button">
+              <button className="button"  onClick={showExportModal}>
                 Export <BiExport />
               </button>
             </div>
 
-            <div class="h-0.5 bg-gray-200 w-full mb-2 rounded-full"></div>
+            <div className="h-0.5 bg-gray-200 w-full mb-2 rounded-full"></div>
 
             {/* Table Section */}
             <div className="con-table daily-table p-1 rounded-lg bg-border-color w-full overflow-hidden h-full">
@@ -89,6 +103,8 @@ function Transaction() {
           </div>
         </div>
       </div>
+      {isExportModalVisible && <Exported Exported={handleConfirm} />}
+
     </div>
   );
 }

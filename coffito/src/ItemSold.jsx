@@ -1,14 +1,24 @@
 import { IoSearch } from "react-icons/io5";
 import { BiExport } from "react-icons/bi";
 import GrandTotal from "./GrandTotal";
-import Topbar
- from "./TopbarSalesReport.jsx";
+import Topbar from "./TopbarSalesReport.jsx";
+import Exported from "./Modal/ExportedModal.jsx";
+
+import { useState } from "react";
+
 function ItemSold() {
+  const [isExportModalVisible, setExportModal] = useState(false);
+  const showExportModal = () => setExportModal(true);
+  const closeExport = () => setExportModal(false);
+
+  const handleConfirm = () => {
+    closeExport(); // Close the confirm modal
+  };
+
   return (
     <div class="main">
-       <Topbar />
-     <GrandTotal />
-     
+      <Topbar />
+      <GrandTotal />
 
       <div class="details mb-3">
         <div>
@@ -23,7 +33,7 @@ function ItemSold() {
                 </label>
               </div>
 
-              <button class="button">
+              <button class="button" onClick={showExportModal}>
                 Export <BiExport />
               </button>
             </div>
@@ -91,6 +101,7 @@ function ItemSold() {
           </div>
         </div>
       </div>
+      {isExportModalVisible && <Exported Exported={handleConfirm} />}
     </div>
   );
 }
