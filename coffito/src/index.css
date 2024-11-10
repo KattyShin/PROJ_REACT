@@ -16,15 +16,24 @@
     @apply text-[1.5rem] font-medium text-text-muted
   }
   .nav-con {
-    @apply z-10 fixed flex-col justify-between w-[230px] h-screen bg-sidebar-bg overflow-hidden text-text-muted border border-border-color;
+    @apply z-10 fixed flex-col items-center justify-between w-[230px] h-screen bg-sidebar-bg overflow-hidden text-text-muted border border-border-color;
   }
   .nav-con ul nav-li-hover li{
     @apply mb-[-4px]
   }
   .nav-li-hover {
-    @apply pl-5 hover:bg-border-color  hover:rounded-l-[10px] hover:text-black;
+    @apply mx-3 px-4
+  }
+  .nav-li-hover-sales {
+    @apply mx-3 px-4
   }
 
+
+  .nav-li-hover:hover {
+    @apply  bg-border-color rounded-[10px] text-black;
+  }
+
+  
   .nav-a {
     @apply flex items-center gap-3 h-[50px];
   }
@@ -143,7 +152,7 @@
 
   /* customStyles.css */
   .dropdown-item {
-    @apply px-3 py-2 cursor-pointer transition ease-in-out duration-300  mt-[-8px];
+    @apply px-3 py-1  cursor-pointer transition ease-in-out duration-300  
   }
 
   .dropdown-item:hover {
@@ -172,8 +181,10 @@
 
   
   .grand-con label{
-    @apply text-[1rem] font-medium 
+    @apply text-[1rem] text-text-muted
   }
+
+
 
 
 
@@ -247,7 +258,20 @@
 }
 
 
+/* -------ACTION------ */
+.action-btn{
+  @apply flex justify-center items-center gap-4
+}
 
+.action-btn button{
+  @apply text-[1.1rem]
+}
+.action-btn .del{
+  @apply text-red-600
+}
+.action-btn .update{
+  @apply text-green-600
+}
 
 
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 
-function SuccessfullyDeletedModal({ onConfirm }) {
+function Exported({ onConfirm }) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -39,4 +39,4 @@ function SuccessfullyDeletedModal({ onConfirm }) {
   );
 }
 
-export default SuccessfullyDeletedModal;
+export default Exported;

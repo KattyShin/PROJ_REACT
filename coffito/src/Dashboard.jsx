@@ -83,6 +83,31 @@ function Dashboard() {
                         <td>40.00</td>
                         <td>Non-Coffee</td>
                       </tr>
+
+                      <tr>
+                        <td>1001</td>
+                        <td>Matcha</td>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                      <tr>
+                        <td>1001</td>
+                        <td>Matcha</td>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                      <tr>
+                        <td>1001</td>
+                        <td>Matcha</td>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                      <tr>
+                        <td>1001</td>
+                        <td>Matcha</td>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
                       <tr>
                         <td>1001</td>
                         <td>Matcha</td>
