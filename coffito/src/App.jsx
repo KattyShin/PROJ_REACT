@@ -1,5 +1,6 @@
+
 // App.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Dashboard from "./Dashboard";
@@ -10,37 +11,54 @@ import SalesReportYearly from "./SalesReportYearly";
 import Transaction from "./Transaction";
 import ItemSold from "./ItemSold";
 
-function App() {
-  return (
-    <Router>
-      <div className="flex w-full">
-        {/* Sidebar with fixed width */}
-        <div className="w-[230px]">
-          <Sidebar />
-        </div>
 
-        {/* Main content will grow to take up the rest of the space */}
-        <div className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/sales-report/daily" element={<SalesReportDaily />} />
-            <Route
-              path="/sales-report/monthly"
-              element={<SalesReportMonthly />}
-            />
-            <Route
-              path="/sales-report/yearly"
-              element={<SalesReportYearly />}
-            />
-            <Route path="/Transaction" element={<Transaction />} />
-            <Route path="/item-sold" element={<ItemSold />} />
-          </Routes>
+function App() {
+
+
+
+
+  return (
+    <>
+      <Router>
+        <div className="flex w-full">
+          {/* Sidebar with fixed width */}
+          <div className="w-[230px]">
+            <Sidebar />
+          </div>
+
+
+          {/* Main content will grow to take up the rest of the space */}
+          <div className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/product" element={<Product />} />
+              <Route
+                path="/sales-report/daily"
+                element={<SalesReportDaily />}
+              />
+              <Route
+                path="/sales-report/monthly"
+                element={<SalesReportMonthly />}
+              />
+              <Route
+                path="/sales-report/yearly"
+                element={<SalesReportYearly />}
+              />
+              <Route path="/Transaction" element={<Transaction />} />
+              <Route path="/item-sold" element={<ItemSold />} />
+            </Routes>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </>
   );
 }
 
+
 export default App;
+
+
+
+
+
