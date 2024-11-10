@@ -7,7 +7,7 @@ function Dashboard() {
   return (
     <div class="main">
       <div class="topbar-con">
-        <h2>Dashboard</h2>
+        <h2>Dash</h2>
         <label htmlFor="">Sunday, 02 November 2024 at 9:46 AM</label>
       </div>
 
