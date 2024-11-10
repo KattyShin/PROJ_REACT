@@ -24,7 +24,7 @@ function ItemSold() {
         <div>
           <div class="flex flex-col justify-between mt-2 mb-3 h-full bg-card-bg p-2 border border-border-color">
             <div class="flex flex-row w-full mt-2 mb-3">
-              <h1 className="w-full">ItemSold</h1>
+              <h1 className="w-full">Item Sold</h1>
               <div class="search">
                 <div></div>
                 <label>
