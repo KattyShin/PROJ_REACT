@@ -1,14 +1,16 @@
 import { IoSearch } from "react-icons/io5";
 import { RiAddCircleLine } from "react-icons/ri";
+import { MdDelete } from "react-icons/md";
+import { MdModeEdit } from "react-icons/md";
+
 import React, { useState } from "react";
 
 import ConfirmModal from "./Modal/ConfirmModal";
-import SuccessfullyDeletedModal from "./Modal/SuccessfullyDeleted";
+import Successfully from "./Modal/Successfully";
 import UpdateProductModal from "./Modal/UpdateProdModal";
 import AddProductModal from "./Modal/AddProductModal";
 
-function AddProduct() {
-  
+function Product() {
   // DELETE
   const [isConfirmModal, setConfirmModalVisible] = useState(false);
   const showConfirmModal = () => setConfirmModalVisible(true);
@@ -25,7 +27,7 @@ function AddProduct() {
   const closeAddProdModal = () => setIsAddProdModalVisible(false);
 
   // SUCCESFULLY
-  const [isSuccessfullyDeletedModal, setSaveModal] = useState(false);
+  const [isSuccessfullydModal, setSaveModal] = useState(false);
   const showSuccessfullySaveModal = () => setSaveModal(true);
   const closeSuccessfullySaveModal = () => setSaveModal(false);
 
@@ -35,10 +37,31 @@ function AddProduct() {
     closeModalConfirmModal(); // Close the confirm modal
   };
 
+  // State for search term
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Sample data for products
+  const products = [
+    { id: "1001", name: "Matcha", price: "40.00", category: "Non-Coffee" },
+    { id: "1002", name: "Espresso", price: "50.00", category: "Coffee" },
+    { id: "1003", name: "Latte", price: "45.00", category: "Coffee" },
+    { id: "1004", name: "Cappuccino", price: "60.00", category: "Coffee" },
+  ];
+
+   // Filtered products based on search term
+   const filteredProducts = products.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.id.includes(searchTerm) ||
+      product.price.includes(searchTerm)
+
+  );
+
   return (
     <div className="main">
       <div className="topbar-con">
-        <h2>Add Product</h2>
+        <h2>Product</h2>
         <label>Sunday, 02 November 2024 at 9:46 AM</label>
       </div>
 
@@ -49,12 +72,17 @@ function AddProduct() {
             <div className="search w-[250px]">
               <label>
                 <IoSearch className="text-gray-400 mr-2" />
-                <input type="text" placeholder="Search" />
+                <input
+                  type="text"
+                  placeholder="Search"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)} // Update searchTerm state
+                />
               </label>
             </div>
             {/* Add Product Button */}
             <button className="button" onClick={openAddProdModal}>
-              Add Product <RiAddCircleLine className="button-icon" />
+              Products <RiAddCircleLine className="button-icon" />
             </button>
           </div>
 
@@ -72,25 +100,25 @@ function AddProduct() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1001</td>
-                    <td>Matcha</td>
-                    <td>40.00</td>
-                    <td>Non-Coffee</td>
-                    <td>
-                      <div className="flex-col">
-                        <button
-                          className="bg-red-400 mb-5"
-                          onClick={showConfirmModal}
-                        >
-                          Del
-                        </button>
-                        <button className="bg-blue-50" onClick={openModal}>
-                          Update
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                  {/* Map over filtered products */}
+                  {filteredProducts.map((product) => (
+                    <tr key={product.id}>
+                      <td>{product.id}</td>
+                      <td>{product.name}</td>
+                      <td>{product.price}</td>
+                      <td>{product.category}</td>
+                      <td>
+                        <div className="action-btn">
+                          <button onClick={showConfirmModal}>
+                            <MdDelete className="del" />
+                          </button>
+                          <button onClick={openModal}>
+                            <MdModeEdit className="update" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -126,11 +154,11 @@ function AddProduct() {
       )}
 
       {/* Successfully */}
-      {isSuccessfullyDeletedModal && (
-        <SuccessfullyDeletedModal onConfirm={handleConfirm} />
+      {isSuccessfullydModal && (
+        <Successfully onConfirm={handleConfirm} />
       )}
     </div>
   );
 }
 
-export default AddProduct;
+export default Product;

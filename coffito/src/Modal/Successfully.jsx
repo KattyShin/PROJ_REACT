@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 
-function SuccessfullySavedModal({ onConfirm }) {
+function Successfully({ onConfirm }) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ function SuccessfullySavedModal({ onConfirm }) {
         } transition-transform duration-300`}
       >
         <h3 className="text-lg font-semibold mb-4">Confirm Changes</h3>
-        <p>Successfully saved</p>
+        <p>Action completed successfully!</p>
         <div className="SucSaveIcon">
           <FaCircleCheck />
         </div>
@@ -39,4 +39,4 @@ function SuccessfullySavedModal({ onConfirm }) {
   );
 }
 
-export default SuccessfullySavedModal;
+export default Successfully;

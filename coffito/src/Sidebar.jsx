@@ -29,7 +29,7 @@ function Sidebar() {
     };
     return (
         <div className="nav-con">
-            <ul className="w-full ml-1 flex flex-col ">
+            <ul >
                 <li className="pl-5 mb-1 mt-3  ml-[-10px]">
                     <Link to="/" className="flex items-center">
                         <div  className="logo" >
@@ -47,27 +47,16 @@ function Sidebar() {
                 </li>
 
                 <li className="nav-li-hover">
-                    <Link to="/add-product" className="nav-a">
+                    <Link to="/product" className="nav-a">
                         <span className="icon"><RiAddCircleLine  /></span>
-                        <span className="title">Add Product</span>
+                        <span className="title">Product</span>
                     </Link>
                 </li>
 
-                <li className="nav-li-hover">
-                    <Link to="/update-product" className="nav-a">
-                        <span className="icon"><RiEditBoxLine /></span>
-                        <span className="title">Update Product</span>
-                    </Link>
-                </li>
+              
+                
 
-                <li className="nav-li-hover">
-                    <Link to="/delete-product" className="nav-a">
-                        <span className="icon"><RiDeleteBin2Line  /></span>
-                        <span className="title">Delete Product</span>
-                    </Link>
-                </li>
-
-                <li className='cursor-pointer pl-5'>
+                <li className='cursor-pointer nav-li-hover-sales'>
                     <div onClick={toggleDropdown} className="nav-a">
                         <span className="icon"><SlGraph /></span>
                         <span className="flex items-center gap-1">Sales Report <IoMdArrowDropdown /> </span>
