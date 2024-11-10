@@ -2,44 +2,58 @@ import { IoSearch } from "react-icons/io5";
 import { RiAddCircleLine } from "react-icons/ri";
 import React, { useState } from "react";
 
+import ConfirmModal from "./Modal/ConfirmModal";
+import SuccessfullyDeletedModal from "./Modal/SuccessfullyDeleted";
+import UpdateProductModal from "./Modal/UpdateProdModal";
 import AddProductModal from "./Modal/AddProductModal";
-import SuccessfullySavedModal from "./Modal/SuccessfullySavedModal";
 
 function AddProduct() {
-  const [isAddProdModalVisible, setIsModalVisible] = useState(false);
-  const [isModalSaveVisible, setIsConfirmationVisible] = useState(false);
+  
+  // DELETE
+  const [isConfirmModal, setConfirmModalVisible] = useState(false);
+  const showConfirmModal = () => setConfirmModalVisible(true);
+  const closeModalConfirmModal = () => setConfirmModalVisible(false);
 
+  // UPDATE
+  const [isUpdateProd, setIsModalVisible] = useState(false);
   const openModal = () => setIsModalVisible(true);
   const closeModal = () => setIsModalVisible(false);
-  const showModalSaveChanges = () => setIsConfirmationVisible(true);
-  const closeConfirmationModal = () => setIsConfirmationVisible(false);
+
+  // ADD
+  const [isAddProdModalVisible, setIsAddProdModalVisible] = useState(false);
+  const openAddProdModal = () => setIsAddProdModalVisible(true);
+  const closeAddProdModal = () => setIsAddProdModalVisible(false);
+
+  // SUCCESFULLY
+  const [isSuccessfullyDeletedModal, setSaveModal] = useState(false);
+  const showSuccessfullySaveModal = () => setSaveModal(true);
+  const closeSuccessfullySaveModal = () => setSaveModal(false);
 
   const handleConfirm = () => {
-    // Proceed with the desired action after confirmation, e.g., reset or navigate
     console.log("Product saved successfully");
-    closeConfirmationModal(); // Close the confirmation modal
-    closeModal(); // Close the AddProductModal or reset to initial state
+    closeSuccessfullySaveModal(); // Close the success modal
+    closeModalConfirmModal(); // Close the confirm modal
   };
 
   return (
-    <div class="main">
+    <div className="main">
       <div className="topbar-con">
         <h2>Add Product</h2>
-        <label htmlFor="">Sunday, 02 November 2024 at 9:46 AM</label>
+        <label>Sunday, 02 November 2024 at 9:46 AM</label>
       </div>
 
-      <div class="details">
-        <div class="flex flex-col ">
-          <div class="flex justify-between mt-5 mb-3 items-center ">
+      <div className="details">
+        <div className="flex flex-col">
+          <div className="flex justify-between mt-5 mb-3 items-center">
             {/* Search Bar */}
-            <div class="search w-[250px]">
+            <div className="search w-[250px]">
               <label>
                 <IoSearch className="text-gray-400 mr-2" />
                 <input type="text" placeholder="Search" />
               </label>
             </div>
-            {/* Export Button */}
-            <button class="button" onClick={openModal}>
+            {/* Add Product Button */}
+            <button className="button" onClick={openAddProdModal}>
               Add Product <RiAddCircleLine className="button-icon" />
             </button>
           </div>
@@ -47,8 +61,6 @@ function AddProduct() {
           {/* Table Section */}
           <div className="con-table daily-table p-1 rounded-lg bg-border-color w-full overflow-hidden h-full">
             <div className="table-wrapper-prod table-con bg-card-bg border border-border-color">
-              {/* --Table Ari */}
-
               <table>
                 <thead>
                   <tr>
@@ -56,67 +68,66 @@ function AddProduct() {
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Category</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
-
                 <tbody>
                   <tr>
                     <td>1001</td>
                     <td>Matcha</td>
                     <td>40.00</td>
                     <td>Non-Coffee</td>
-                  </tr>
-
-                  <tr>
-                    <td>1001</td>
-                    <td>Matcha</td>
-                    <td>40.00</td>
-                    <td>Non-Coffee</td>
-                  </tr>
-                  <tr>
-                    <td>1001</td>
-                    <td>Matcha</td>
-                    <td>40.00</td>
-                    <td>Non-Coffee</td>
-                  </tr>
-                  <tr>
-                    <td>1001</td>
-                    <td>Matcha</td>
-                    <td>40.00</td>
-                    <td>Non-Coffee</td>
-                  </tr>
-                  <tr>
-                    <td>1001</td>
-                    <td>Matcha</td>
-                    <td>40.00</td>
-                    <td>Non-Coffee</td>
-                  </tr>
-
-                  <tr>
-                    <td>1001</td>
-                    <td>Matcha</td>
-                    <td>40.00</td>
-                    <td>Non-Coffee</td>
+                    <td>
+                      <div className="flex-col">
+                        <button
+                          className="bg-red-400 mb-5"
+                          onClick={showConfirmModal}
+                        >
+                          Del
+                        </button>
+                        <button className="bg-blue-50" onClick={openModal}>
+                          Update
+                        </button>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
-              
             </div>
           </div>
         </div>
       </div>
 
-      {/* Show the AddProductModal if isModalVisible is true */}
-      {isAddProdModalVisible && (
-        <AddProductModal
-          closeModal={closeModal}
-          showModalSaveChanges={showModalSaveChanges}
+      {/* DELETE */}
+      {/* Confirm Deletion Modal */}
+      {isConfirmModal && (
+        <ConfirmModal
+          closeModalConfirmModal={closeModalConfirmModal}
+          showSuccessfullySaveModal={showSuccessfullySaveModal}
         />
       )}
 
-      {/* Show the ConfirmationModal if isConfirmationVisible is true */}
-      {isModalSaveVisible && (
-        <SuccessfullySavedModal onConfirm={handleConfirm} />
+      {/* UPDATE */}
+      {/* Show the AddProductModal if isModalVisible is true */}
+      {isUpdateProd && (
+        <UpdateProductModal
+          closeModal={closeModal}
+          showSuccessfullySaveModal={showSuccessfullySaveModal}
+        />
+      )}
+
+      {/* ADD */}
+      {/* Show the AddProductModal if isModalVisible is true */}
+      {isAddProdModalVisible && (
+        <AddProductModal
+          closeModal={closeAddProdModal}
+          showSuccessfullySaveModal={showSuccessfullySaveModal}
+        />
+      )}
+
+      {/* Successfully */}
+      {isSuccessfullyDeletedModal && (
+        <SuccessfullyDeletedModal onConfirm={handleConfirm} />
       )}
     </div>
   );

@@ -33,6 +33,8 @@ function DeleteProduct() {
     closeModal(); // Close the AddProductModal or reset to initial state
   };
 
+
+  
   return (
     <div class="main">
       <div className="topbar-con">
@@ -124,6 +126,7 @@ function DeleteProduct() {
           showSuccessfullySaveModal={showSuccessfullySaveModal}
         />
       )}
+
 
       {isSuccessfullyDeletedModal && (
         <SuccessfullyDeletedModal onConfirm={handleConfirm} />

@@ -30,7 +30,7 @@ function SuccessfullyDeletedModal({ onConfirm }) {
         } transition-transform duration-300`}
       >
         <h3 className="text-lg font-semibold mb-4">Confirm Changes</h3>
-        <p>Successfully Deleted</p>
+        <p>Action completed successfully!</p>
         <div className="SucSaveIcon">
           <FaCircleCheck />
         </div>

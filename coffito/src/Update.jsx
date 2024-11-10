@@ -5,7 +5,7 @@ import AddProductModal from "./Modal/AddProductModal";
 import ConfirmAddProd from "./Modal/SuccessfullySavedModal";
 import SuccessfullySavedModal from "./Modal/SuccessfullySavedModal";
 
-function AddProduct() {
+function UpdateProduct() {
   const [isAddProdModalVisible, setIsModalVisible] = useState(false);
   const [isModalSaveVisible, setIsConfirmationVisible] = useState(false);
 
@@ -20,6 +20,9 @@ function AddProduct() {
     closeConfirmationModal(); // Close the confirmation modal
     closeModal(); // Close the AddProductModal or reset to initial state
   };
+
+
+
 
   return (
     <div class="main">
@@ -116,8 +119,11 @@ function AddProduct() {
       {isModalSaveVisible && (
         <SuccessfullySavedModal onConfirm={handleConfirm} />
       )}
+
+
+
     </div>
   );
 }
 
-export default AddProduct;
+export default UpdateProduct;

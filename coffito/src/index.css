@@ -47,7 +47,7 @@
 
   /* In your CSS file */
   .main {
-    @apply fixed left-[230px] w-[calc(100vw-230px)]  h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col ;
+    @apply absolute left-[230px] w-[calc(100vw-230px)]  h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col ;
   }
 
   .topbar-con {
