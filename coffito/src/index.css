@@ -203,6 +203,7 @@
 .con-table th,
 .con-table td {
   @apply p-2 text-center min-w-[100px];
+  width: 100px;
 }
 
 .con-table tbody {
