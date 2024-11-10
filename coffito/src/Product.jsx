@@ -64,13 +64,13 @@ function Product() {
   const fetchProducts = async () => {
     try {
       const response = await axios.get("http://localhost:5000/api/products");
-      console.log(response.data); // Confirm data structure
+      console.log(response.data); // This should log the products array
       setProducts(Array.isArray(response.data) ? response.data : []);
     } catch (err) {
       console.error("Error fetching products:", err);
     }
   };
-
+  
   const openAddProdModal = () => setIsAddProdModalVisible(true);
   const closeAddProdModal = () => setIsAddProdModalVisible(false);
 

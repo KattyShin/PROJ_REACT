@@ -1,93 +1,109 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 
-function AddProductModal({ closeModal, showSuccessfullySaveModal, addProductToTable }) {
+function AddProductModal({
+  closeModal,
+  showSuccessfullySaveModal,
+  addProductToTable,
+}) {
   const [isVisible, setIsVisible] = useState(false);
-  const [prodName, setProdName] = useState('');
-  const [prodPrice, setProdPrice] = useState('');
-  const [prodCategory, setProdCategory] = useState('Coffee');
-  const [error, setError] = useState({ prodName: '', prodPrice: '', prodNameExists: false });
+  const [prodName, setProdName] = useState("");
+  const [prodPrice, setProdPrice] = useState("");
+  const [prodCategory, setProdCategory] = useState("Coffee");
+  const [error, setError] = useState({
+    prodName: "",
+    prodPrice: "",
+    prodNameExists: false,
+  });
 
   useEffect(() => {
     setIsVisible(true); // Trigger modal to fade in when component mounts
     return () => setIsVisible(false); // Ensure fade-out before unmount
   }, []);
-
   const handleSaveProduct = async () => {
     let valid = true;
-    let errors = { prodName: '', prodPrice: '', prodNameExists: false };
-  
+    let errors = { prodName: "", prodPrice: "", prodNameExists: false };
+
     // Basic validation for name and price
     if (!prodName) {
-      errors.prodName = 'Please fill in the product name';
+      errors.prodName = "Please fill in the product name";
       valid = false;
     }
-  
+
     if (!prodPrice) {
-      errors.prodPrice = 'Please fill in the product price';
+      errors.prodPrice = "Please fill in the product price";
       valid = false;
     }
-  
+
     if (valid) {
+      // Proceed with saving product if validation passes
       try {
-        // Asynchronous check for existing product name using product name
-        const response = await axios.get(`http://localhost:5000/api/products/check-name?prod_name=${prodName}`);
-        
-        if (response.data.exists) {
-          errors.prodNameExists = true;
-          valid = false; // Prevent save if product exists
+        const response = await axios.post(
+          "http://localhost:5000/api/products",
+          {
+            prod_name: prodName,
+            prod_price: prodPrice,
+            prod_category: prodCategory,
+          }
+        );
+
+        if (response.status === 201) {
+          addProductToTable(response.data); // Add product to table
+          setIsVisible(false);
+          setTimeout(() => {
+            closeModal();
+            showSuccessfullySaveModal(); // Show success modal
+          }, 300);
         }
       } catch (err) {
-        console.error('Error checking product name:', err);
-        // Optionally handle network error here
+        console.error("Error adding product:", err);
+        // Optionally handle product addition error
+        if (
+          err.response &&
+          err.response.data.message === "Product name already exists"
+        ) {
+          errors.prodNameExists = true;
+          setError(errors);
+        }
       }
-    }
-  
-    if (!valid) {
-      setError(errors); // Update error state
-      return; // Don't proceed if validation fails
-    }
-  
-    // Proceed with saving product if validation passes
-    try {
-      const response = await axios.post('http://localhost:5000/api/products', {
-        prod_name: prodName,
-        prod_price: prodPrice,
-        prod_category: prodCategory,
-      });
-  
-      if (response.status === 201) {
-        addProductToTable(response.data); // Add product to table
-        setIsVisible(false);
-        setTimeout(() => {
-          closeModal();
-          showSuccessfullySaveModal(); // Show success modal
-        }, 300);
-      }
-    } catch (err) {
-      console.error('Error adding product:', err);
-      // Optionally handle product addition error
     }
   };
-  
 
   return (
-    <div className={`w-full z-50 fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 ${isVisible ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
-      <div className={`bg-white p-6 rounded-lg shadow-lg w-[300px] text-center transform ${isVisible ? 'translate-y-0' : '-translate-y-10'} transition-transform duration-300`}>
+    <div
+      className={`w-full z-50 fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 ${
+        isVisible ? "opacity-100" : "opacity-0"
+      } transition-opacity duration-300`}
+    >
+      <div
+        className={`bg-white p-6 rounded-lg shadow-lg w-[300px] text-center transform ${
+          isVisible ? "translate-y-0" : "-translate-y-10"
+        } transition-transform duration-300`}
+      >
         <h3 className="text-lg font-semibold mb-4">Add Product Details</h3>
-        
+
         {/* Product Name Input */}
         <div className="mb-4">
-          <label className="block text-left font-medium mb-1">Product Name</label>
+          <label className="block text-left font-medium mb-1">
+            Product Name
+          </label>
           <input
             type="text"
-            className={`w-full border ${error.prodName || error.prodNameExists ? 'border-red-500' : 'border-gray-300'} rounded px-3 py-2`}
+            className={`w-full border ${
+              error.prodName || error.prodNameExists
+                ? "border-red-500"
+                : "border-gray-300"
+            } rounded px-3 py-2`}
             placeholder="Enter product name"
             value={prodName}
             onChange={(e) => setProdName(e.target.value)}
           />
-          {error.prodName && <p className="text-red-500 text-sm">{error.prodName}</p>}
-          {error.prodNameExists && <p className="text-red-500 text-sm">Product name already exists</p>}
+          {error.prodName && (
+            <p className="text-red-500 text-sm">{error.prodName}</p>
+          )}
+          {error.prodNameExists && (
+            <p className="text-red-500 text-sm">Product name already exists</p>
+          )}
         </div>
 
         {/* Product Price Input */}
@@ -95,17 +111,23 @@ function AddProductModal({ closeModal, showSuccessfullySaveModal, addProductToTa
           <label className="block text-left font-medium mb-1">Price</label>
           <input
             type="number"
-            className={`w-full border ${error.prodPrice ? 'border-red-500' : 'border-gray-300'} rounded px-3 py-2`}
+            className={`w-full border ${
+              error.prodPrice ? "border-red-500" : "border-gray-300"
+            } rounded px-3 py-2`}
             placeholder="Enter price"
             value={prodPrice}
             onChange={(e) => setProdPrice(e.target.value)}
           />
-          {error.prodPrice && <p className="text-red-500 text-sm">{error.prodPrice}</p>}
+          {error.prodPrice && (
+            <p className="text-red-500 text-sm">{error.prodPrice}</p>
+          )}
         </div>
 
         {/* Product Category Dropdown */}
         <div className="mb-4">
-          <label className="block text-left font-medium mb-1">Product Category</label>
+          <label className="block text-left font-medium mb-1">
+            Product Category
+          </label>
           <select
             className="w-full border border-gray-300 rounded px-3 py-2"
             value={prodCategory}
