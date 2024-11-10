@@ -16,7 +16,7 @@
     @apply text-[1.5rem] font-medium text-text-muted
   }
   .nav-con {
-    @apply z-10 fixed flex-col items-center justify-between w-[230px] h-screen bg-sidebar-bg overflow-hidden text-text-muted border border-border-color;
+    @apply z-10  flex-col items-center h-screen bg-sidebar-bg overflow-hidden text-text-muted border border-border-color;
   }
   .nav-con ul nav-li-hover li{
     @apply mb-[-4px]
@@ -55,16 +55,17 @@
   
 
   /* In your CSS file */
-  .main {
-    @apply fixed left-[230px] w-[calc(100vw-230px)]  h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col z-50;
-  }
+ /* In your CSS file */
+.main {
+  @apply relative h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col ;
+}
 
   .topbar-con {
     @apply bg-card-bg w-full h-12 flex justify-between items-center pr-5 pl-5;
   }
 
   .details {
-    @apply flex w-full px-5  h-full pb-4;
+    @apply flex w-full px-3  h-full pb-4;
   }
   .details div {
     @apply flex w-full;
@@ -214,7 +215,6 @@
 .con-table th,
 .con-table td {
   @apply p-2 text-center min-w-[100px];
-  width: 100px;
 }
 
 .con-table tbody {
