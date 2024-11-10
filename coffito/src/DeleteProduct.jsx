@@ -1,5 +1,5 @@
 import { IoSearch } from "react-icons/io5";
-import { BiExport } from "react-icons/bi";
+import { RiDeleteBack2Line } from "react-icons/ri";
 import React, { useState } from "react";
 import ConfirmModal from "./Modal/ConfirmModal";
 import SuccessfullyDeletedModal from "./Modal/SuccessfullyDeleted";
@@ -42,7 +42,7 @@ function DeleteProduct() {
 
       <div class="details">
         <div class="flex flex-col ">
-          <div class="flex justify-between mt-2 mb-3 items-center ">
+          <div class="flex justify-between mt-5 mb-3 items-center ">
             {/* Search Bar */}
             <div class="search w-[250px]">
               <label>
@@ -53,14 +53,66 @@ function DeleteProduct() {
 
             {/* Export Button */}
             <button class="button" onClick={showConfirmmodal}>
-              Delete <BiExport />
+              Delete Product{" "}
             </button>
           </div>
 
           {/* Table Section */}
-          <div className="con-table daily-table p-2 rounded-lg bg-border-color w-full overflow-hidden h-full">
-            <div className="table-con bg-card-bg border border-border-color">
+          <div className="con-table daily-table p-1 rounded-lg bg-border-color w-full overflow-hidden h-full">
+            <div className="table-wrapper-prod table-con bg-card-bg border border-border-color">
               {/* --Table Ari */}
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>1001</td>
+                    <td>Matcha</td>
+                    <td>40.00</td>
+                    <td>Non-Coffee</td>
+                  </tr>
+
+                  <tr>
+                    <td>1001</td>
+                    <td>Matcha</td>
+                    <td>40.00</td>
+                    <td>Non-Coffee</td>
+                  </tr>
+                  <tr>
+                    <td>1001</td>
+                    <td>Matcha</td>
+                    <td>40.00</td>
+                    <td>Non-Coffee</td>
+                  </tr>
+                  <tr>
+                    <td>1001</td>
+                    <td>Matcha</td>
+                    <td>40.00</td>
+                    <td>Non-Coffee</td>
+                  </tr>
+                  <tr>
+                    <td>1001</td>
+                    <td>Matcha</td>
+                    <td>40.00</td>
+                    <td>Non-Coffee</td>
+                  </tr>
+
+                  <tr>
+                    <td>1001</td>
+                    <td>Matcha</td>
+                    <td>40.00</td>
+                    <td>Non-Coffee</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

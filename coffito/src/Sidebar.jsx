@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
-import { MdSpaceDashboard, MdAddBox, MdDelete, MdAccountCircle } from "react-icons/md";
-import { RiEdit2Fill } from "react-icons/ri";
+import { MdSpaceDashboard } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 import { SlGraph } from "react-icons/sl";
+
+import { RiEditBoxLine } from "react-icons/ri";
+import { RiAddCircleLine } from "react-icons/ri";
+import { RiDeleteBin2Line } from "react-icons/ri";
+import { RiLogoutCircleLine } from "react-icons/ri";
+import { RiAccountCircleLine } from "react-icons/ri";
+
+
+
 import { Link, useNavigate } from "react-router-dom";  // Import useNavigate here
 import logo from "./assets/CoffitoLogo (40 x 40 px).png"; // Update the path based on your folder structure
 
@@ -22,7 +30,7 @@ function Sidebar() {
     return (
         <div className="nav-con">
             <ul className="w-full ml-1 flex flex-col ">
-                <li className="pl-5 mb-5 mt-3  ml-[-10px]">
+                <li className="pl-5 mb-1 mt-3  ml-[-10px]">
                     <Link to="/" className="flex items-center">
                         <div  className="logo" >
                             <img src={logo} alt="Logo" />
@@ -40,21 +48,21 @@ function Sidebar() {
 
                 <li className="nav-li-hover">
                     <Link to="/add-product" className="nav-a">
-                        <span className="icon"><MdAddBox /></span>
+                        <span className="icon"><RiAddCircleLine  /></span>
                         <span className="title">Add Product</span>
                     </Link>
                 </li>
 
                 <li className="nav-li-hover">
                     <Link to="/update-product" className="nav-a">
-                        <span className="icon"><RiEdit2Fill /></span>
+                        <span className="icon"><RiEditBoxLine /></span>
                         <span className="title">Update Product</span>
                     </Link>
                 </li>
 
                 <li className="nav-li-hover">
                     <Link to="/delete-product" className="nav-a">
-                        <span className="icon"><MdDelete /></span>
+                        <span className="icon"><RiDeleteBin2Line  /></span>
                         <span className="title">Delete Product</span>
                     </Link>
                 </li>
@@ -79,7 +87,7 @@ function Sidebar() {
 
                 <li className="nav-li-hover">
                     <Link to="/account" className="nav-a">
-                        <span className="icon"><MdAccountCircle /></span>
+                        <span className="icon"><RiAccountCircleLine  /></span>
                         <span className="title">Account</span>
                     </Link>
                 </li>
@@ -87,7 +95,7 @@ function Sidebar() {
 
                 <li className="nav-li-hover">
                     <Link to="/account" className="nav-a">
-                        <span className="icon"><MdAccountCircle /></span>
+                        <span className="icon"><RiLogoutCircleLine  /></span>
                         <span className="title">Log out</span>
                     </Link>
                 </li>

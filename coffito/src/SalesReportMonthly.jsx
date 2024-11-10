@@ -10,7 +10,7 @@ function SalesReportMonthly() {
       </div>
     
 
-      <div className="pl-3 mt-3">
+      <div className="grand-con">
         <label>
           Grand Total Sales : <span>400</span>
         </label>
@@ -40,11 +40,64 @@ function SalesReportMonthly() {
 
             <div class="h-0.5 bg-gray-200 w-full mb-2 rounded-full"></div>
 
-            {/*TABLE---------------------------------------------------------------------- */}
-            <div class="con-table daily-table p-2 rounded-lg bg-primary-bg w-full overflow-hidden h-full">
-              <div class="table-con bg-card-bg border border-border-color"></div>
-              {/* --ARI TABLE  */}
-            </div>
+              {/* Table Section */}
+              <div className="con-table daily-table p-1 rounded-lg bg-border-color w-full overflow-hidden h-full">
+                <div className="table-wrapper-prod table-con bg-card-bg border border-border-color">
+                  {/* --Table Ari */}
+
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>1001</td>
+                        <td>Matcha</td>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+
+                      <tr>
+                        <td>1001</td>
+                        <td>Matcha</td>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                      <tr>
+                        <td>1001</td>
+                        <td>Matcha</td>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                      <tr>
+                        <td>1001</td>
+                        <td>Matcha</td>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                      <tr>
+                        <td>1001</td>
+                        <td>Matcha</td>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+
+                      <tr>
+                        <td>1001</td>
+                        <td>Matcha</td>
+                        <td>40.00</td>
+                        <td>Non-Coffee</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
           </div>
         </div>
       </div>

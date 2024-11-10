@@ -11,6 +11,10 @@
   h2{
     @apply text-[1.2rem] font-medium 
   }
+
+  h1{
+    @apply text-[1.5rem] font-medium text-text-muted
+  }
   .nav-con {
     @apply z-10 fixed flex-col justify-between w-[230px] h-screen bg-sidebar-bg overflow-hidden text-text-muted border border-border-color;
   }
@@ -37,19 +41,21 @@
   .logo img {
     @apply   h-[50px]  w-[50px]
   }
+
+
   
 
   /* In your CSS file */
   .main {
-    @apply relative top-0 left-[230px] w-[calc(100vw-230px)]  h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col ;
+    @apply fixed left-[230px] w-[calc(100vw-230px)]  h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col ;
   }
 
   .topbar-con {
-    @apply bg-card-bg w-full h-12 flex justify-between items-center px-5;
+    @apply bg-card-bg w-full h-12 flex justify-between items-center pr-5 pl-5;
   }
 
   .details {
-    @apply flex w-full h-full px-5 ml-[-3px] pb-4;
+    @apply flex w-full px-5  h-full pb-4;
   }
   .details div {
     @apply flex w-full;
@@ -60,23 +66,32 @@
   }
 
   .card-con-sales {
-    @apply flex  gap-3  mb-3;
+    @apply flex  gap-3 ;
   }
 
   .card-con-sales .card-con-sales-div {
-    @apply w-full h-[120px] bg-card-bg rounded-[10px] border border-border-color flex flex-col p-3;
+    @apply w-full h-[120px] bg-card-bg rounded-[10px] border border-border-color flex flex-col p-5;
   }
 
   .dashboard-text-con {
-    @apply flex flex-row border-none w-full h-full items-center;
+    @apply flex flex-row border-none gap-3 w-full h-full items-center;
   }
+
+  
+  .dashboard-text-con img{
+    @apply w-[30px] h-[30px];
+  }
+  .dashboard-text-con span{
+    @apply text-[1.2rem];
+  }
+
 
   .table-con {
     @apply bg-gray-200 rounded-[5px];
   }
 
   .col-2 {
-    @apply w-full h-full p-3;
+    @apply w-full h-full p-3 ;
   }
 
   .cardHeader {
@@ -87,7 +102,7 @@
     @apply p-3 h-full flex flex-col bg-card-bg rounded-[5px];
   }
   .best-selling {
-    @apply h-full w-full flex flex-col gap-3;
+    @apply relative h-full w-full flex flex-col gap-3 max-h-[100vw] overflow-y-auto ;
   }
 
   .best-selling .card-con {
@@ -95,33 +110,32 @@
   }
 
   .best-selling .prod-con {
-    @apply h-11 w-11 bg-[#FF8C18] rounded-[10px];
+    @apply h-11 w-11 bg-[#FF8C18] rounded-[10px] flex justify-center  items-center;
   }
-
-  .search label {
-    @apply flex  items-center bg-card-bg border border-border-color rounded-[10px] p-2 w-[300px] h-[30px];
+  .best-selling .prod-con img{
+    @apply w-[30px] h-[30px]
   }
-  .search input {
-    @apply bg-transparent border-none outline-none text-black;
-  }
-
-
 
 
 
   .search label {
-    @apply flex  items-center bg-card-bg border border-border-color rounded-[10px] p-2 w-[300px] h-[30px];
+    @apply flex  items-center bg-card-bg border border-border-color rounded-[10px] p-2 w-[300px] h-[35px];
   }
   .search input {
-    @apply bg-transparent border-none outline-none text-black;
+    @apply bg-transparent border-none outline-none text-black ;
   }
+
+
+
 
 
 
   .button {
     @apply flex  gap-1 justify-center items-center bg-accent w-[150px] h-[30px] text-white text-[12px] pl-2 pr-2 rounded-[5px] ml-5;
   }
-
+.button-icon{
+  @apply text-[1.1rem]
+}
   
   .exportButton {
     @apply flex  gap-1 justify-center items-center bg-accent w-[100px] h-[30px] text-white text-[12px] pl-2 pr-2 rounded-[5px] ml-5;
@@ -149,6 +163,90 @@
   .SucSaveIcon {
     @apply w-full flex justify-center mt-3 text-3xl text-accent;
   }
+
+
+
+  .grand-con{
+    @apply pl-5 mt-3 mb-2
+  }
+
+  
+  .grand-con label{
+    @apply text-[1rem] font-medium 
+  }
+
+
+
+/* ----------TABLE----------------- */
+
+.table-wrapper-prod {
+  @apply rounded-md h-full overflow-hidden bg-card-bg border border-border-color;
+}
+
+.con-table {
+  @apply w-full overflow-hidden h-full   p-1 rounded-lg bg-border-color  ;
+}
+
+
+.con-table table {
+  @apply w-full border-collapse text-black h-full mb-48 ;
+}
+
+.con-table thead {
+  @apply w-full;
+}
+
+.con-table tr {
+  @apply table w-full;
+}
+
+.con-table th,
+.con-table td {
+  @apply p-2 text-center min-w-[100px];
+}
+
+.con-table tbody {
+  @apply block overflow-y-auto h-full;
+}
+
+.con-table tbody tr {
+  @apply table w-full cursor-pointer transition-colors duration-300 text-xs;
+}
+
+.con-table tbody tr:nth-child(odd) {
+  @apply bg-card-bg;
+}
+
+.con-table tbody tr:nth-child(even) {
+  @apply bg-primary-bg;
+}
+
+.con-table tbody tr:hover {
+  @apply bg-border-color;
+}
+
+.con-table thead tr {
+  @apply bg-border-color;
+}
+
+.con-table thead th {
+  @apply font-bold sticky top-0 z-10;
+}
+
+/* =============SCROLL BAR DESIGN ================ */
+.con-table tbody::-webkit-scrollbar {
+  @apply w-2.5;
+}
+
+.con-table tbody::-webkit-scrollbar-track {
+  @apply bg-card-bg rounded-lg;
+}
+
+.con-table tbody::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-lg;
+}
+
+
 
 
 

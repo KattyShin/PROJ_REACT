@@ -1,11 +1,9 @@
 import { IoSearch } from "react-icons/io5";
-import { BiExport } from "react-icons/bi";
+import { RiAddCircleLine } from "react-icons/ri";
 import React, { useState } from "react";
 
 import AddProductModal from "./Modal/AddProductModal";
 import SuccessfullySavedModal from "./Modal/SuccessfullySavedModal";
-
-
 
 function AddProduct() {
   const [isAddProdModalVisible, setIsModalVisible] = useState(false);
@@ -32,7 +30,7 @@ function AddProduct() {
 
       <div class="details">
         <div class="flex flex-col ">
-          <div class="flex justify-between mt-2 mb-3 items-center ">
+          <div class="flex justify-between mt-5 mb-3 items-center ">
             {/* Search Bar */}
             <div class="search w-[250px]">
               <label>
@@ -42,33 +40,84 @@ function AddProduct() {
             </div>
             {/* Export Button */}
             <button class="button" onClick={openModal}>
-              Add Product <BiExport />
+              Add Product <RiAddCircleLine className="button-icon" />
             </button>
-
-           
           </div>
 
           {/* Table Section */}
-          <div className="con-table daily-table p-2 rounded-lg bg-border-color w-full overflow-hidden h-full">
-            <div className="table-con bg-card-bg border border-border-color">
+          <div className="con-table daily-table p-1 rounded-lg bg-border-color w-full overflow-hidden h-full">
+            <div className="table-wrapper-prod table-con bg-card-bg border border-border-color">
               {/* --Table Ari */}
+
+              <table>
+                <thead>
+                  <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>1001</td>
+                    <td>Matcha</td>
+                    <td>40.00</td>
+                    <td>Non-Coffee</td>
+                  </tr>
+
+                  <tr>
+                    <td>1001</td>
+                    <td>Matcha</td>
+                    <td>40.00</td>
+                    <td>Non-Coffee</td>
+                  </tr>
+                  <tr>
+                    <td>1001</td>
+                    <td>Matcha</td>
+                    <td>40.00</td>
+                    <td>Non-Coffee</td>
+                  </tr>
+                  <tr>
+                    <td>1001</td>
+                    <td>Matcha</td>
+                    <td>40.00</td>
+                    <td>Non-Coffee</td>
+                  </tr>
+                  <tr>
+                    <td>1001</td>
+                    <td>Matcha</td>
+                    <td>40.00</td>
+                    <td>Non-Coffee</td>
+                  </tr>
+
+                  <tr>
+                    <td>1001</td>
+                    <td>Matcha</td>
+                    <td>40.00</td>
+                    <td>Non-Coffee</td>
+                  </tr>
+                </tbody>
+              </table>
+              
             </div>
           </div>
         </div>
       </div>
 
-
- 
       {/* Show the AddProductModal if isModalVisible is true */}
       {isAddProdModalVisible && (
-        <AddProductModal closeModal={closeModal} showModalSaveChanges={showModalSaveChanges} />
+        <AddProductModal
+          closeModal={closeModal}
+          showModalSaveChanges={showModalSaveChanges}
+        />
       )}
-      
+
       {/* Show the ConfirmationModal if isConfirmationVisible is true */}
-      {isModalSaveVisible && <SuccessfullySavedModal onConfirm={handleConfirm} />}
-
-
-
+      {isModalSaveVisible && (
+        <SuccessfullySavedModal onConfirm={handleConfirm} />
+      )}
     </div>
   );
 }
