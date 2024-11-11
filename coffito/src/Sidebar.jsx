@@ -27,6 +27,8 @@ function Sidebar() {
     const handleDropdownClick = (route) => {
         navigate(route);
     };
+
+    
     return (
         <div className="nav-con">
             <ul >
@@ -54,7 +56,7 @@ function Sidebar() {
                 </li>
 
               
-                
+          
 
                 <li className='cursor-pointer nav-li-hover-sales'>
                     <div onClick={toggleDropdown} className="nav-a">
@@ -63,7 +65,7 @@ function Sidebar() {
                     </div>
 
                     {isDropdownVisible && (
-                        <ul className="flex flex-col ml-12 mb-2">
+                        <ul className="flex flex-col ml-9 mb-2">
                             <li onClick={() => handleDropdownClick("/sales-report/daily")} className="dropdown-item">Daily Sales</li>
                             <li onClick={() => handleDropdownClick("/sales-report/monthly")} className="dropdown-item">Monthly Sales</li>
                             <li onClick={() => handleDropdownClick("/sales-report/yearly")} className="dropdown-item">Yearly Sales</li>
