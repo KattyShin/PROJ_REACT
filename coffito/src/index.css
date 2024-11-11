@@ -284,15 +284,19 @@
 }
 
 .login-btn{
-  @apply ml-[35%] bg-orange-500 w-[35%] font-semibold text-white;
+  @apply ml-[25%] bg-orange-500 w-[50%] h-[30px] font-semibold text-white;
 }
 
 .input-fields{
-  @apply rounded-md min-w-full h-[30px] border-2 border-solid border-gray-500;
+  @apply rounded-md min-w-full h-[35px] border-2 border-solid border-gray-500 pl-[10px];
 }
 
 .loginlogo img{
   @apply w-[500px] h-[500px];
+}
+
+.h2login{
+  @apply text-3xl pb-[20px] font-extrabold text-orange-700
 }
 
 }
