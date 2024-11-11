@@ -1,11 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer components {
 
-  body{
-    font-family: Poppins;
-  }
+@layer components {
 
   h5{
     @apply text-[1.4rem] font-semibold
@@ -19,7 +16,7 @@
     @apply text-[1.5rem] font-medium text-text-muted
   }
   .nav-con {
-    @apply fixed flex-col items-center h-full bg-sidebar-bg text-text-muted border border-border-color;
+    @apply z-10 fixed flex-col items-center justify-between w-[230px] h-screen bg-sidebar-bg overflow-hidden text-text-muted border border-border-color;
   }
   .nav-con ul nav-li-hover li{
     @apply mb-[-4px]
@@ -54,19 +51,23 @@
     @apply   h-[50px]  w-[50px]
   }
 
-.main {
-  @apply relative h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col w-full ;
-}
+
+  
+
+  /* In your CSS file */
+  .main {
+    @apply fixed left-[230px] w-[calc(100vw-230px)]  h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col z-50;
+  }
 
   .topbar-con {
     @apply bg-card-bg w-full h-12 flex justify-between items-center pr-5 pl-5;
   }
 
   .details {
-    @apply flex w-full px-5 h-full pb-4;
+    @apply flex w-full px-5  h-full pb-4;
   }
   .details div {
-    @apply w-full flex-grow;
+    @apply flex w-full;
   }
 
   .col-1 {
@@ -213,6 +214,7 @@
 .con-table th,
 .con-table td {
   @apply p-2 text-center min-w-[100px];
+  width: 100px;
 }
 
 .con-table tbody {
@@ -272,5 +274,29 @@
   @apply text-green-600
 }
 
+/* -------LOGIN------- */
+.login-parent{
+  @apply bg-transparent;
+}
+
+.login-box{
+  @apply flex items-center justify-center border-4 w-[25%] border-gray-300;
+}
+
+.login-btn{
+  @apply ml-[25%] bg-orange-500 w-[50%] h-[30px] font-semibold text-white;
+}
+
+.input-fields{
+  @apply rounded-md min-w-full h-[35px] border-2 border-solid border-gray-500 pl-[10px];
+}
+
+.loginlogo img{
+  @apply w-[500px] h-[500px];
+}
+
+.h2login{
+  @apply text-3xl pb-[20px] font-extrabold text-orange-700
+}
 
 }
