@@ -7,7 +7,6 @@ function AddProductModal({
   addProductToTable,
 }) {
 
-  
   const [prodName, setProdName] = useState("");
   const [prodPrice, setProdPrice] = useState("");
   const [prodCategory, setProdCategory] = useState("Coffee");
@@ -17,7 +16,6 @@ function AddProductModal({
     prodNameExists: false,
   });
 
-
   // ANIMATION PART
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
@@ -25,57 +23,58 @@ function AddProductModal({
     return () => setIsVisible(false); // Ensure fade-out before unmount
   }, []);
 
+ // SAVE PRODUCT
+const handleSaveProduct = async () => {
+  let valid = true;
+  let errors = { prodName: "", prodPrice: "", prodNameExists: false };
 
+  // Basic validation for name and price
+  if (!prodName) {
+    errors.prodName = "Please fill in the product name";
+    valid = false;
+  }
 
-  // SAVE PRODUCT
-  const handleSaveProduct = async () => {
-    let valid = true;
-    let errors = { prodName: "", prodPrice: "", prodNameExists: false };
+  if (!prodPrice) {
+    errors.prodPrice = "Please fill in the product price";
+    valid = false;
+  }
 
-    // Basic validation for name and price
-    if (!prodName) {
-      errors.prodName = "Please fill in the product name";
-      valid = false;
-    }
+  // Update error state here to trigger re-render
+  setError(errors);
 
-    if (!prodPrice) {
-      errors.prodPrice = "Please fill in the product price";
-      valid = false;
-    }
-
-    if (valid) {
-      // Proceed with saving product if validation passes
-      try {
-        const response = await axios.post(
-          "http://localhost:5000/api/products",
-          {
-            prod_name: prodName,
-            prod_price: prodPrice,
-            prod_category: prodCategory,
-          }
-        );
-
-        if (response.status === 201) {
-          addProductToTable(response.data); // Add product to table
-          setIsVisible(false);
-          setTimeout(() => {
-            closeModal();
-            showSuccessfullySaveModal(); // Show success modal
-          }, 300);
+  if (valid) {
+    // Proceed with saving product if validation passes
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/products",
+        {
+          prod_name: prodName,
+          prod_price: prodPrice,
+          prod_category: prodCategory,
         }
-      } catch (err) {
-        console.error("Error adding product:", err);
-        // Optionally handle product addition error
-        if (
-          err.response &&
-          err.response.data.message === "Product name already exists"
-        ) {
-          errors.prodNameExists = true;
-          setError(errors);
-        }
+      );
+
+      if (response.status === 201) {
+        addProductToTable(response.data); // Add product to table
+        setIsVisible(false);
+        setTimeout(() => {
+          closeModal();
+          showSuccessfullySaveModal(); // Show success modal
+        }, 300);
+      }
+    } catch (err) {
+      console.error("Error adding product:", err);
+      // Handle "Product name already exists" error
+      if (err.response && err.response.data.message === "Product name already exists") {
+        setError((prevErrors) => ({
+          ...prevErrors,
+          prodNameExists: true,
+          prodName: "",
+        }));
       }
     }
-  };
+  }
+};
 
 
   return (
@@ -110,6 +109,7 @@ function AddProductModal({
           {error.prodName && (
             <p className="text-red-500 text-sm">{error.prodName}</p>
           )}
+          
           {error.prodNameExists && (
             <p className="text-red-500 text-sm">Product name already exists</p>
           )}

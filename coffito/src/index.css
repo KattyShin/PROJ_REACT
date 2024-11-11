@@ -19,7 +19,7 @@
     @apply text-[1.5rem] font-medium text-text-muted
   }
   .nav-con {
-    @apply z-10  flex-col items-center h-screen bg-sidebar-bg overflow-hidden text-text-muted border border-border-color;
+    @apply flex-col items-center h-full bg-sidebar-bg text-text-muted border border-border-color;
   }
   .nav-con ul nav-li-hover li{
     @apply mb-[-4px]
@@ -54,13 +54,8 @@
     @apply   h-[50px]  w-[50px]
   }
 
-
-  
-
-  /* In your CSS file */
- /* In your CSS file */
 .main {
-  @apply relative h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col ;
+  @apply relative h-full min-h-screen bg-primary-bg text-black transition-all flex flex-col w-full ;
 }
 
   .topbar-con {
@@ -68,10 +63,10 @@
   }
 
   .details {
-    @apply flex w-full px-3  h-full pb-4;
+    @apply flex w-full px-5 h-full pb-4;
   }
   .details div {
-    @apply flex w-full;
+    @apply w-full flex-grow;
   }
 
   .col-1 {
