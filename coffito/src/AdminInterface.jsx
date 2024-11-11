@@ -1,5 +1,5 @@
 
-// App.jsx
+// AdminInterface.jsx
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Dashboard from "./Dashboard";
@@ -11,14 +11,14 @@ import Transaction from "./Transaction";
 import ItemSold from "./ItemSold";
 
 
-function AdminInterface() {
+function AdminInterface({ onLogout }) {
   return (
     <>
       <Router>
         <div className="flex w-full h-full">
           {/* Sidebar with fixed width */}
           <div className="w-[230px] relative">
-            <Sidebar />
+            <Sidebar onLogout={onLogout} />
           </div>
 
 

@@ -1,3 +1,4 @@
+//Sidebar.jsx
 import React, { useState } from 'react';
 import { MdSpaceDashboard } from "react-icons/md";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -15,7 +16,7 @@ import { RiAccountCircleLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";  // Import useNavigate here
 import logo from "./assets/CoffitoLogo (40 x 40 px).png"; // Update the path based on your folder structure
 
-function Sidebar() {
+function Sidebar({ onLogout }) {
     const [isDropdownVisible, setDropdownVisible] = useState(false);
     const navigate = useNavigate();
 
@@ -85,7 +86,7 @@ function Sidebar() {
 
 
                 <li className="nav-li-hover">
-                    <Link to="/account" className="nav-a">
+                    <Link onClick={onLogout} /*to="/account"*/ className="nav-a">
                         <span className="icon"><RiLogoutCircleLine  /></span>
                         <span className="title">Log out</span>
                     </Link>

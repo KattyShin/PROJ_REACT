@@ -1,3 +1,4 @@
+//Login.jsx
 import React, { useState } from "react";
 import loginlogo from "./assets/CoffitoLogo.png";
 
@@ -27,11 +28,11 @@ function Login({ onLogin }) {
                     <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", width: "300px" }}>
                         <label>
                             Username: <br />
-                            <input className="input-fields" type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                            <input className="input-fields focus:outline-none" type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
                         </label> <br />
                         <label>
                             Password: <br />
-                            <input className="input-fields" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                            <input className="input-fields focus:outline-none" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                         </label> <br />
                         <button className="login-btn rounded-md" type="submit">Log In</button> <br /> <br />
                     </form>
