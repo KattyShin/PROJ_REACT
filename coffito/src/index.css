@@ -126,6 +126,10 @@
 
 
 
+  .search{
+    @apply flex items-end
+  }
+
   .search label {
     @apply flex  items-center bg-card-bg border border-border-color rounded-[10px] p-2 w-[300px] h-[35px];
   }
