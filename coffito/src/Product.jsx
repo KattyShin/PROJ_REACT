@@ -102,7 +102,7 @@ function Product() {
               <table>
                 <thead>
                   <tr>
-                    <th>Product ID</th>
+                    <th className="hidden">Product ID</th>
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Category</th>
@@ -113,7 +113,7 @@ function Product() {
                   {Array.isArray(products) ? (
                     products.map((product) => (
                       <tr key={product._id}>
-                        <td>{product._id}</td>
+                        <td className="hidden">{product._id}</td>
                         <td>{product.prod_name}</td>
                         <td>{product.prod_price}</td>
                         <td>{product.prod_category}</td>
