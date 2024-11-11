@@ -11,6 +11,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to MongoDB
+
+
 mongoose
   .connect("mongodb://localhost:27017/COFFITO", {})
   .then(() => console.log("MongoDB connected"))
