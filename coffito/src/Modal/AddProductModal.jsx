@@ -6,7 +6,8 @@ function AddProductModal({
   showSuccessfullySaveModal,
   addProductToTable,
 }) {
-  const [isVisible, setIsVisible] = useState(false);
+
+  
   const [prodName, setProdName] = useState("");
   const [prodPrice, setProdPrice] = useState("");
   const [prodCategory, setProdCategory] = useState("Coffee");
@@ -16,10 +17,17 @@ function AddProductModal({
     prodNameExists: false,
   });
 
+
+  // ANIMATION PART
+  const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     setIsVisible(true); // Trigger modal to fade in when component mounts
     return () => setIsVisible(false); // Ensure fade-out before unmount
   }, []);
+
+
+
+  // SAVE PRODUCT
   const handleSaveProduct = async () => {
     let valid = true;
     let errors = { prodName: "", prodPrice: "", prodNameExists: false };
@@ -68,6 +76,7 @@ function AddProductModal({
       }
     }
   };
+
 
   return (
     <div

@@ -1,3 +1,4 @@
+
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -29,10 +30,9 @@ const productSchema = new mongoose.Schema(
 
 const Product = mongoose.model("Product", productSchema);
 
-// Routes
+
+
 // Get all products
-// Get product by name (for checking existence)
-// Check if product name exists
 app.get("/api/products", async (req, res) => {
   try {
     const products = await Product.find();
@@ -72,6 +72,27 @@ app.post('/api/products', async (req, res) => {
 });
 
 
+
+
+// Delete product
+app.delete("/api/products/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedProduct = await Product.findByIdAndDelete(id);
+    if (!deletedProduct) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    res.status(200).json({ message: "Product deleted" });
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ message: "Error deleting product", error: err.message });
+  }
+});
+
+
+
 // Update existing product
 app.put("/api/products/:id", async (req, res) => {
   try {
@@ -99,24 +120,12 @@ app.put("/api/products/:id", async (req, res) => {
   }
 });
 
-// Delete product
-app.delete("/api/products/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const deletedProduct = await Product.findByIdAndDelete(id);
-    if (!deletedProduct) {
-      return res.status(404).json({ message: "Product not found" });
-    }
-    res.status(200).json({ message: "Product deleted" });
-  } catch (err) {
-    console.error(err);
-    res
-      .status(500)
-      .json({ message: "Error deleting product", error: err.message });
-  }
-});
+
 
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+
+

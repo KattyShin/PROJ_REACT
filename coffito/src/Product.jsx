@@ -12,13 +12,10 @@ import UpdateProductModal from "./Modal/UpdateProdModal";
 
 function Product() {
   const [products, setProducts] = useState([]);
-  const [isAddProdModalVisible, setIsAddProdModalVisible] = useState(false);
-  const [isSuccessfullydModal, setSaveModal] = useState(false);
-
-  // DELETE
-  const [isConfirmModal, setConfirmModalVisible] = useState(false);
   const [productToDelete, setProductToDelete] = useState(null);
 
+  // DELETE MODAL
+  const [isConfirmModal, setConfirmModalVisible] = useState(false);
   const showConfirmModal = (product) => {
     setProductToDelete(product); // Set the product to delete
     setConfirmModalVisible(true); // Show the confirmation modal
@@ -26,45 +23,42 @@ function Product() {
 
   const closeModalConfirmModal = () => setConfirmModalVisible(false);
 
-  // UPDATE
-
-  // UPDATE
+  // UPDATE MODALS
   const [isUpdateProd, setIsModalVisible] = useState(false);
   const openModal = () => setIsModalVisible(true);
   const closeModal = () => setIsModalVisible(false);
 
-  // Function to delete a product
+  // SUCCESFULLY MODAL
+  const [isSuccessfullydModal, setSaveModal] = useState(false);
+  const showSuccessfullySaveModal = () => setSaveModal(true);
+  const closeSuccessfullySaveModal = () => setSaveModal(false);
+  const handleConfirm = () => {
+    console.log("Product deleted successfully");
+    closeSuccessfullySaveModal(); // Close the success modal
+  };
+
+  // ADD PROD MODAL
+  const [isAddProdModalVisible, setIsAddProdModalVisible] = useState(false);
+  const openAddProdModal = () => setIsAddProdModalVisible(true);
+  const closeAddProdModal = () => setIsAddProdModalVisible(false);
+
+  // Function to DELETE a product
   const deleteProduct = async () => {
     try {
       // Perform the API call to delete the product
       await axios.delete(
         `http://localhost:5000/api/products/${productToDelete._id}`
       );
-
       // Remove the deleted product from the state
       setProducts((prevProducts) =>
         prevProducts.filter((product) => product._id !== productToDelete._id)
       );
-
-      // Close the confirmation modal
-      closeModalConfirmModal();
-
-      // Show the success modal
-      showSuccessfullySaveModal();
     } catch (err) {
       console.error("Error deleting product:", err);
     }
   };
 
-  // SUCCESFULLY
-  const showSuccessfullySaveModal = () => setSaveModal(true);
-  const closeSuccessfullySaveModal = () => setSaveModal(false);
-
-  const handleConfirm = () => {
-    console.log("Product deleted successfully");
-    closeSuccessfullySaveModal(); // Close the success modal
-  };
-
+  // DISPLAY TABLE DATA
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -78,9 +72,6 @@ function Product() {
       console.error("Error fetching products:", err);
     }
   };
-
-  const openAddProdModal = () => setIsAddProdModalVisible(true);
-  const closeAddProdModal = () => setIsAddProdModalVisible(false);
 
   return (
     <div className="main">
@@ -150,7 +141,7 @@ function Product() {
         </div>
       </div>
 
-      {/* DELETE */}
+      {/* SHOW DELETE MODAL */}
       {isConfirmModal && (
         <ConfirmModal
           closeModalConfirmModal={closeModalConfirmModal}
@@ -158,29 +149,24 @@ function Product() {
           deleteProduct={deleteProduct} // Pass deleteProduct function to ConfirmModal
         />
       )}
-
-      {/* UPDATE */}
-
-      {/* UPDATE */}
-      {/* Show the AddProductModal if isModalVisible is true */}
+      {/*SHOW UPDATE MODAL*/}
       {isUpdateProd && (
         <UpdateProductModal
           closeModal={closeModal}
           showSuccessfullySaveModal={showSuccessfullySaveModal}
         />
       )}
-      {/* Add Product Modal */}
+      {/* ADD PROD MODALl */}
       {isAddProdModalVisible && (
         <AddProductModal
           closeModal={closeAddProdModal}
-          showSuccessfullySaveModal={() => setSaveModal(true)} // Trigger success message
+          showSuccessfullySaveModal={showSuccessfullySaveModal} // Trigger success message
           addProductToTable={(newProduct) =>
             setProducts([...products, newProduct])
           } // Add product to list
         />
       )}
-
-      {/* Successfully */}
+      {/* SUCCDULLY MODAL */}
       {isSuccessfullydModal && <Successfully onConfirm={handleConfirm} />}
     </div>
   );

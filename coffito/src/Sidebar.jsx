@@ -27,6 +27,8 @@ function Sidebar() {
     const handleDropdownClick = (route) => {
         navigate(route);
     };
+
+    
     return (
         <div className="nav-con">
             <ul >
