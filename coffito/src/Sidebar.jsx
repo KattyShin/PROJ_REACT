@@ -69,7 +69,7 @@ function Sidebar({onLogout}) {
                     </div>
 
                     {isDropdownVisible && (
-                        <ul className="flex flex-col ml-9 mb-2">
+                        <ul className="flex flex-col ml-12 mb-2">
                             <li onClick={() => handleDropdownClick("/sales-report/daily")} className="dropdown-item">Daily Sales</li>
                             <li onClick={() => handleDropdownClick("/sales-report/monthly")} className="dropdown-item">Monthly Sales</li>
                             <li onClick={() => handleDropdownClick("/sales-report/yearly")} className="dropdown-item">Yearly Sales</li>
