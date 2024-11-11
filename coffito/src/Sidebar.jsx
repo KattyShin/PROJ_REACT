@@ -15,7 +15,7 @@ import { RiAccountCircleLine } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";  // Import useNavigate here
 import logo from "./assets/CoffitoLogo (40 x 40 px).png"; // Update the path based on your folder structure
 
-function Sidebar() {
+function Sidebar({onLogout}) {
     const [isDropdownVisible, setDropdownVisible] = useState(false);
     const navigate = useNavigate();
 
@@ -27,6 +27,12 @@ function Sidebar() {
     const handleDropdownClick = (route) => {
         navigate(route);
     };
+
+    const handleLogout = () => {
+        onLogout();
+        navigate("/")
+    };
+
     return (
         <div className="nav-con">
             <ul >
@@ -82,7 +88,7 @@ function Sidebar() {
                 </li>
 
 
-                <li className="nav-li-hover">
+                <li className="nav-li-hover" onClick={handleLogout}>
                     <Link to="/account" className="nav-a">
                         <span className="icon"><RiLogoutCircleLine  /></span>
                         <span className="title">Log out</span>
