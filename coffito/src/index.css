@@ -19,7 +19,7 @@
     @apply text-[1.5rem] font-medium text-text-muted
   }
   .nav-con {
-    @apply flex-col items-center h-full bg-sidebar-bg text-text-muted border border-border-color;
+    @apply fixed flex-col items-center h-full bg-sidebar-bg text-text-muted border border-border-color;
   }
   .nav-con ul nav-li-hover li{
     @apply mb-[-4px]

@@ -17,7 +17,7 @@ function AdminInterface() {
       <Router>
         <div className="flex w-full h-full">
           {/* Sidebar with fixed width */}
-          <div className="w-[230px] ">
+          <div className="w-[230px]  h-full">
             <Sidebar />
           </div>
 
