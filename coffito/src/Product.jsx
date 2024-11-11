@@ -1,71 +1,113 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import AddProductModal from "./Modal/AddProductModal";
+import DateTime from "./DateTime";
 import { IoSearch } from "react-icons/io5";
 import { RiAddCircleLine } from "react-icons/ri";
 import { MdDelete } from "react-icons/md";
 import { MdModeEdit } from "react-icons/md";
-
-import React, { useState } from "react";
-
-import ConfirmModal from "./Modal/ConfirmModal";
 import Successfully from "./Modal/Successfully";
+import ConfirmModal from "./Modal/ConfirmModal";
 import UpdateProductModal from "./Modal/UpdateProdModal";
-import AddProductModal from "./Modal/AddProductModal";
-import DateTime from "./DateTime";
 
 function Product() {
-  // DELETE
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [noResults, setNoResults] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
+
+  // DELETE MODAL
   const [isConfirmModal, setConfirmModalVisible] = useState(false);
-  const showConfirmModal = () => setConfirmModalVisible(true);
+  const showConfirmModal = (product) => {
+    setProductToDelete(product); // Set the product to delete
+    setConfirmModalVisible(true); // Show the confirmation modal
+  };
+
   const closeModalConfirmModal = () => setConfirmModalVisible(false);
 
-  // UPDATE
+  // UPDATE MODALS
   const [isUpdateProd, setIsModalVisible] = useState(false);
   const openModal = () => setIsModalVisible(true);
   const closeModal = () => setIsModalVisible(false);
 
-  // ADD
+  // SUCCESS MODAL
+  const [isSuccessfullydModal, setSaveModal] = useState(false);
+  const showSuccessfullySaveModal = () => setSaveModal(true);
+  const closeSuccessfullySaveModal = () => setSaveModal(false);
+  const handleConfirm = () => {
+    console.log("Product deleted successfully");
+    closeSuccessfullySaveModal(); // Close the success modal
+  };
+
+  // ADD PRODUCT MODAL
   const [isAddProdModalVisible, setIsAddProdModalVisible] = useState(false);
   const openAddProdModal = () => setIsAddProdModalVisible(true);
   const closeAddProdModal = () => setIsAddProdModalVisible(false);
 
-  // SUCCESFULLY
-  const [isSuccessfullydModal, setSaveModal] = useState(false);
-  const showSuccessfullySaveModal = () => setSaveModal(true);
-  const closeSuccessfullySaveModal = () => setSaveModal(false);
-
-  const handleConfirm = () => {
-    console.log("Product saved successfully");
-    closeSuccessfullySaveModal(); // Close the success modal
-    closeModalConfirmModal(); // Close the confirm modal
+  // DELETE a product
+  const deleteProduct = async () => {
+    try {
+      await axios.delete(
+        `http://localhost:5000/api/products/${productToDelete._id}`
+      );
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => product._id !== productToDelete._id)
+      );
+      setFilteredProducts((prevProducts) =>
+        prevProducts.filter((product) => product._id !== productToDelete._id)
+      );
+    } catch (err) {
+      console.error("Error deleting product:", err);
+    }
   };
 
+  // Fetch products
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
-  // State for search term
-  const [searchTerm, setSearchTerm] = useState("");
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/products");
+      const productData = Array.isArray(response.data) ? response.data : [];
+      setProducts(productData);
+      setFilteredProducts(productData);
+    } catch (err) {
+      console.error("Error fetching products:", err);
+    }
+  };
 
-  // Sample data for products
-  const products = [
-    { id: "1001", name: "Matcha", price: "40.00", category: "Non-Coffee" },
-    { id: "1002", name: "Espresso", price: "50.00", category: "Coffee" },
-    { id: "1003", name: "Latte", price: "45.00", category: "Coffee" },
-    { id: "1004", name: "Cappuccino", price: "60.00", category: "Coffee" },
-  ];
+  // Handle search input and enter key
+  const handleSearch = (event) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
 
-   // Filtered products based on search term
-   const filteredProducts = products.filter(
-    (product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.id.includes(searchTerm) ||
-      product.price.includes(searchTerm)
+    const filtered = products.filter(
+      (product) =>
+        product.prod_name.toLowerCase().includes(query) ||
+        product.prod_price.toString().includes(query) ||
+        product.prod_category.toLowerCase().includes(query)
+    );
 
-  );
+    setFilteredProducts(filtered);
+    setNoResults(false); // Reset noResults initially
+
+    // Check if Enter is pressed
+    if (event.key === "Enter") {
+      if (filtered.length === 0) {
+        setNoResults(true); // Show "Search" if no products match
+      } else {
+        setNoResults(false); // Hide "Search" if there are results
+      }
+    }
+  };
 
   return (
     <div className="main">
-      
       <div className="topbar-con">
         <h2>Product</h2>
-       <DateTime/>
+        <DateTime />
       </div>
 
       <div className="details">
@@ -78,14 +120,15 @@ function Product() {
                 <input
                   type="text"
                   placeholder="Search"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)} // Update searchTerm state
+                  value={searchQuery}
+                  onChange={handleSearch} // Search handler
+                  onKeyDown={handleSearch} // Detect Enter key
                 />
               </label>
             </div>
             {/* Add Product Button */}
             <button className="button" onClick={openAddProdModal}>
-              Products <RiAddCircleLine className="button-icon" />
+              Add Product <RiAddCircleLine className="button-icon" />
             </button>
           </div>
 
@@ -95,7 +138,7 @@ function Product() {
               <table>
                 <thead>
                   <tr>
-                    <th>Product ID</th>
+                    <th className="hidden">Product ID</th>
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Category</th>
@@ -103,25 +146,36 @@ function Product() {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* Map over filtered products */}
-                  {filteredProducts.map((product) => (
-                    <tr key={product.id}>
-                      <td>{product.id}</td>
-                      <td>{product.name}</td>
-                      <td>{product.price}</td>
-                      <td>{product.category}</td>
-                      <td>
-                        <div className="action-btn">
-                          <button onClick={showConfirmModal}>
-                            <MdDelete className="del" />
-                          </button>
-                          <button onClick={openModal}>
-                            <MdModeEdit className="update" />
-                          </button>
-                        </div>
+                  {noResults ? (
+                    <tr>
+                      <td colSpan="5" style={{ textAlign: "center" }}>
+                        Search
                       </td>
                     </tr>
-                  ))}
+                  ) : filteredProducts.length > 0 ? (
+                    filteredProducts.map((product) => (
+                      <tr key={product._id}>
+                        <td className="hidden">{product._id}</td>
+                        <td>{product.prod_name}</td>
+                        <td>{product.prod_price}</td>
+                        <td>{product.prod_category}</td>
+                        <td>
+                          <div className="action-btn">
+                            <button onClick={() => showConfirmModal(product)}>
+                              <MdDelete className="del" />
+                            </button>
+                            <button onClick={openModal}>
+                              <MdModeEdit className="update" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="5">No products found</td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -129,37 +183,31 @@ function Product() {
         </div>
       </div>
 
-      {/* DELETE */}
-      {/* Confirm Deletion Modal */}
+      {/* MODALS */}
       {isConfirmModal && (
         <ConfirmModal
           closeModalConfirmModal={closeModalConfirmModal}
           showSuccessfullySaveModal={showSuccessfullySaveModal}
+          deleteProduct={deleteProduct}
         />
       )}
-
-      {/* UPDATE */}
-      {/* Show the AddProductModal if isModalVisible is true */}
       {isUpdateProd && (
         <UpdateProductModal
           closeModal={closeModal}
           showSuccessfullySaveModal={showSuccessfullySaveModal}
         />
       )}
-
-      {/* ADD */}
-      {/* Show the AddProductModal if isModalVisible is true */}
       {isAddProdModalVisible && (
         <AddProductModal
           closeModal={closeAddProdModal}
           showSuccessfullySaveModal={showSuccessfullySaveModal}
+          addProductToTable={(newProduct) => {
+            setProducts([...products, newProduct]);
+            setFilteredProducts([...products, newProduct]);
+          }}
         />
       )}
-
-      {/* Successfully */}
-      {isSuccessfullydModal && (
-        <Successfully onConfirm={handleConfirm} />
-      )}
+      {isSuccessfullydModal && <Successfully onConfirm={handleConfirm} />}
     </div>
   );
 }
