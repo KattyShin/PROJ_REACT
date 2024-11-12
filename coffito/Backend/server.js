@@ -12,14 +12,12 @@ app.use(bodyParser.json());
 
 // Connect to MongoDB
 
-
 mongoose
   .connect("mongodb://localhost:27017/COFFITO", {})
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
 // Example Product schema
-// Example Product schema with versionKey disabled
 const productSchema = new mongoose.Schema(
   {
     prod_name: { type: String, required: true, unique: true },
@@ -35,7 +33,6 @@ const productSchema = new mongoose.Schema(
 );
 
 const Product = mongoose.model("Product", productSchema);
-
 
 // Get all products
 app.get("/api/products", async (req, res) => {
@@ -76,8 +73,6 @@ app.post("/api/products", async (req, res) => {
   }
 });
 
-
-
 // Delete product
 app.delete("/api/products/:id", async (req, res) => {
   try {
@@ -94,8 +89,6 @@ app.delete("/api/products/:id", async (req, res) => {
       .json({ message: "Error deleting product", error: err.message });
   }
 });
-
-
 
 // Update existing product
 app.put("/api/products/:id", async (req, res) => {
@@ -123,6 +116,44 @@ app.put("/api/products/:id", async (req, res) => {
       .json({ message: "Error updating product", error: err.message });
   }
 });
+
+
+
+const usersSchema = new mongoose.Schema(
+  {
+    user_id: { type: Number, required: true },
+    username: { type: String, required: true },
+    password: { type: String, required: true },
+  },
+  { versionKey: false }
+);
+
+const User = mongoose.model("User", usersSchema)
+
+// Login API
+app.post('/api/users', async (req, res) => {
+  const { username, password, user_id } = req.body;
+
+  try {
+      // Find user by username and user_id
+      const user = await User.findOne({ username, user_id });
+      if (!user) {
+          return res.status(400).json({ message: "User not found" });
+      }
+
+      // Check if the password matches (using bcrypt if passwords are hashed)
+      const isPasswordValid = password === user.password; // or bcrypt.compare(password, user.password) for hashed password
+      if (!isPasswordValid) {
+          return res.status(400).json({ message: "Invalid password" });
+      }
+
+      // If user and password match
+      res.status(200).json({ message: "Login successful", user });
+  } catch (err) {
+      res.status(500).json({ message: "Server error" });
+  }
+});
+
 
 // Start server
 app.listen(PORT, () => {

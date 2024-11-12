@@ -1,7 +1,6 @@
 // App.jsx
 import React, { useState, useEffect } from "react";
 import Login from "./Login";
-import Dashboard from "./Dashboard";
 import AdminInterface from "./AdminInterface";
 
 function App() {
