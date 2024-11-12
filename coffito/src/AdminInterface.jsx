@@ -11,7 +11,7 @@ import ItemSold from "./ItemSold";
 
 function AdminInterface({ onLogout }) {
   return (
-    <Router>
+    <Router >
       <div className="flex w-full h-full">
         {/* Sidebar with fixed width */}
         <div className="w-[230px] relative">
