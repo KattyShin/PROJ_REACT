@@ -58,7 +58,6 @@ function Sidebar({ onLogout }) {
 
               
           
-
                 <li className='cursor-pointer nav-li-hover-sales'>
                     <div onClick={toggleDropdown} className="nav-a">
                         <span className="icon"><SlGraph /></span>
