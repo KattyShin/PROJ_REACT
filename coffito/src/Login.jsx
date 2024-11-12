@@ -44,7 +44,7 @@ function Login({ onLogin }) {
       }
     } catch (err) {
       // Handle error (invalid credentials or server error)
-      setError("Invalid credentials. Please try again.");
+      setError("Invalid credentials");
       console.error("Login error:", err);
     }
   };
@@ -84,8 +84,7 @@ function Login({ onLogin }) {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </label>
-              {passwordError && <div className="tex">{passwordError}</div>}
-
+            
             <br />
             <button className="login-btn rounded-md" type="submit">
               Log In
