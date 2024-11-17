@@ -302,6 +302,43 @@
 }
 
 
+/* ACCOUNT */
+.accs-parent-div{
+  @apply pl-[3%]
+}
+
+.st-upd-btn-span{
+  @apply ml-[30%];
+}
+
+.adm-info{
+  @apply ml-[20%];
+}
+
+.acc-icon{
+  @apply pl-[10%] pr-[10%];
+}
+
+.acc-txt-div{
+  @apply pl-[10px];
+}
+
+.accs-parent-div{
+  @apply pt-[2%];
+}
+
+.acc-parent{
+  @apply rounded-[10px];
+}
+  
+.acc-txt-div{
+  @apply pb-1;
+}
+
+/* UPDATE ACCOUNT MODAL */
+
+
+
 /* ERROR MESSAGE */
 .error-message{
   @apply text-start text-red-600  text-sm

@@ -8,6 +8,7 @@ import SalesReportMonthly from "./SalesReportMonthly";
 import SalesReportYearly from "./SalesReportYearly";
 import Transaction from "./Transaction";
 import ItemSold from "./ItemSold";
+import Accounts from "./Accounts";
 
 function AdminInterface({ onLogout }) {
   return (
@@ -29,6 +30,7 @@ function AdminInterface({ onLogout }) {
             <Route path="/sales-report/yearly" element={<SalesReportYearly />} />
             <Route path="/transaction" element={<Transaction />} />
             <Route path="/item-sold" element={<ItemSold />} />
+            <Route path="/accounts" element={<Accounts/>} />
             {/* Redirect any unmatched routes to Dashboard */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

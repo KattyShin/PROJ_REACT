@@ -77,7 +77,7 @@ function Sidebar({ onLogout }) {
                 </li>
 
                 <li className="nav-li-hover">
-                    <Link to="/account" className="nav-a">
+                    <Link to="/accounts" className="nav-a">
                         <span className="icon"><RiAccountCircleLine  /></span>
                         <span className="title">Account</span>
                     </Link>

@@ -62,6 +62,8 @@ function Product() {
     }
   };
 
+  
+
   // Fetch products
   useEffect(() => {
     fetchProducts();
