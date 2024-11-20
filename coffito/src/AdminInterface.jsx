@@ -31,8 +31,7 @@ function AdminInterface({ onLogout }) {
             <Route path="/transaction" element={<Transaction />} />
             <Route path="/item-sold" element={<ItemSold />} />
             <Route path="/accounts" element={<Accounts/>} />
-            {/* Redirect any unmatched routes to Dashboard */}
-            <Route path="*" element={<Navigate to="/" />} />
+            {/* <Route path="*" element={<Navigate to="/" />} /> */}
           </Routes>
         </div>
       </div>
