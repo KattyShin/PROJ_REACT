@@ -130,6 +130,7 @@ const usersSchema = new mongoose.Schema(
 
 const User = mongoose.model("User", usersSchema)
 
+
 // Login API
 app.post('/api/users', async (req, res) => {
   const { username, password, user_id } = req.body;
@@ -153,6 +154,7 @@ app.post('/api/users', async (req, res) => {
       res.status(500).json({ message: "Server error" });
   }
 });
+
 
 
 //Account fetching of data
