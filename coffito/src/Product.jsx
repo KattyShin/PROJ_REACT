@@ -16,9 +16,11 @@ function Product() {
   const [searchQuery, setSearchQuery] = useState("");
   const [noResults, setNoResults] = useState(false);
   const [productToDelete, setProductToDelete] = useState(null);
+  const [productToUpdate, setProductToUpdate] = useState(null);
 
   // DELETE MODAL
   const [isConfirmModal, setConfirmModalVisible] = useState(false);
+
   const showConfirmModal = (product) => {
     setProductToDelete(product); // Set the product to delete
     setConfirmModalVisible(true); // Show the confirmation modal
@@ -28,7 +30,10 @@ function Product() {
 
   // UPDATE MODALS
   const [isUpdateProd, setIsModalVisible] = useState(false);
-  const openModal = () => setIsModalVisible(true);
+  const openModal = (product) => {
+    setProductToUpdate(product);
+    setIsModalVisible(true);
+  };
   const closeModal = () => setIsModalVisible(false);
 
   // SUCCESS MODAL
@@ -36,7 +41,7 @@ function Product() {
   const showSuccessfullySaveModal = () => setSaveModal(true);
   const closeSuccessfullySaveModal = () => setSaveModal(false);
   const handleConfirm = () => {
-    console.log("Product deleted successfully");
+    console.log("Successful!");
     closeSuccessfullySaveModal(); // Close the success modal
   };
 
@@ -62,7 +67,6 @@ function Product() {
     }
   };
 
-  
 
   // Fetch products
   useEffect(() => {
@@ -79,6 +83,7 @@ function Product() {
       console.error("Error fetching products:", err);
     }
   };
+
 
   // Handle search input and enter key
   const handleSearch = (event) => {
@@ -104,6 +109,20 @@ function Product() {
       }
     }
   };
+
+  const updateProductList = (updatedProduct) => {
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.id === updatedProduct._id ? updatedProduct : product
+      )
+    );
+
+    setFilteredProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product._id === updatedProduct._id ? updatedProduct : product
+      )
+    );
+  }
 
   return (
     <div className="main">
@@ -166,7 +185,7 @@ function Product() {
                             <button onClick={() => showConfirmModal(product)}>
                               <MdDelete className="del" />
                             </button>
-                            <button onClick={openModal}>
+                            <button onClick={() => openModal(product)}>
                               <MdModeEdit className="update" />
                             </button>
                           </div>
@@ -197,6 +216,8 @@ function Product() {
         <UpdateProductModal
           closeModal={closeModal}
           showSuccessfullySaveModal={showSuccessfullySaveModal}
+          productToUpdate={productToUpdate}
+          updateProductList={updateProductList}
         />
       )}
       {isAddProdModalVisible && (

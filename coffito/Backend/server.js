@@ -90,25 +90,48 @@ app.delete("/api/products/:id", async (req, res) => {
   }
 });
 
+
+//Fetching to-update Product
+app.get('/api/products/:id', async (req, res) => {
+  const {id} = req.params;
+
+  try {
+    const product = await Product.findId(id);
+
+    if(!product){
+      return res.status(404).json({message: "Product not found"});
+    }
+
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json({message: "Server error"});
+  }
+})
+
 // Update existing product
 app.put("/api/products/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { prod_name, prod_price, prod_category } = req.body;
 
-    if (!prod_name || !prod_price || !prod_category) {
-      return res.status(400).json({ message: "All fields are required" });
+    if (typeof prod_name !== "string" || typeof prod_category !== "string" || isNaN(prod_price)){
+      return res.status(400).json({ message: "Invalid input types" });
     }
 
-    const updatedProduct = await Product.findByIdAndUpdate(
-      id,
-      { prod_name, prod_price, prod_category },
-      { new: true }
-    );
+    const updateFields = {};
+    if(prod_name) updateFields.prod_name = prod_name;
+    if(prod_price) updateFields.prod_price = prod_price;
+    if(prod_category) updateFields.prod_category = prod_category;
+
+
+    const updatedProduct = await Product.findByIdAndUpdate(id, {$set: updateFields}, {new: true});
+
     if (!updatedProduct) {
       return res.status(404).json({ message: "Product not found" });
     }
+
     res.status(200).json(updatedProduct);
+    
   } catch (err) {
     console.error(err);
     res
@@ -154,7 +177,6 @@ app.post('/api/users', async (req, res) => {
       res.status(500).json({ message: "Server error" });
   }
 });
-
 
 
 //Account fetching of data

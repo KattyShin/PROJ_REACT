@@ -82,7 +82,7 @@ function Accounts(){
                 <div className="acc-txt-div">
                     <h3>Admin</h3>
                 </div>
-                <div className="acc-parent flex flex-col  bg-sidebar-bg h-[30%] justify-center">
+                <div className="acc-parent flex flex-col w-[97%] bg-sidebar-bg h-[30%] justify-center">
                     <div className="acc-div flex w-full">
                         <div className="acc-icon"> <MdManageAccounts className="w-[100px] h-[100px]"/> </div>
                         {adminData ? (
